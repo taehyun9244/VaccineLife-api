@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class CommentRequestDto {
+    private Long id;
     private Long vBoardId;
-    private String username;
+    private String nickname;
     private String comment;
 }

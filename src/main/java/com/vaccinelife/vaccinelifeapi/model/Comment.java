@@ -20,7 +20,7 @@ public class Comment {
     private Long vBoardId;
 
     @Column(nullable = false)
-    private String username;
+    private String nickname;
 
     @Column(nullable = false)
     private String comment;
@@ -28,6 +28,6 @@ public class Comment {
     public Comment(CommentRequestDto requestDto){
         this.vBoardId = requestDto.getVBoardId();
         this.comment = requestDto.getComment();
-        this.username = requestDto.getUsername();
+        this.nickname = requestDto.getNickname();
     }
 }

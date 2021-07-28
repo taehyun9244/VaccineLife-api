@@ -17,7 +17,7 @@ public class VBoard {
     private String contents;
 
     @Column(nullable = false)
-    private String username;
+    private String nickname;
 
     @Column(nullable = false)
     private Long surveyId;
