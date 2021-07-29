@@ -4,12 +4,15 @@ import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+
 
 @NoArgsConstructor
 @Entity
 @Getter
+@Setter
 public class VBoard extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -30,8 +33,13 @@ public class VBoard extends Timestamped{
     @Column(nullable = false)
     private int likeCount;
 
+
+//    @JoinColumn(name = "userId")
     @ManyToOne
     private User user;
+
+
+//    @JoinColumn(name = "surveyId")
     @ManyToOne
     private Survey survey;
 

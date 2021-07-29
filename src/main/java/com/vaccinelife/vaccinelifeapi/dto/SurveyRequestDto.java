@@ -1,14 +1,15 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.vaccinelife.vaccinelifeapi.model.Survey;
 import com.vaccinelife.vaccinelifeapi.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.vaccinelife.vaccinelifeapi.model.VBoard;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,10 +18,11 @@ public class SurveyRequestDto {
 
     private String type;
     private String gender;
-    private String age;
-    private int disease;
+    private int age;
+    private Boolean disease;
     private int degree;
     private String aftereffect;
     private Long userId;
+
 
 }

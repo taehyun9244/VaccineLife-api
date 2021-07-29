@@ -28,7 +28,7 @@ public class CommentService {
         VBoard vBoard = vBoardRepository.findById(requestDto.getVBoardId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시물이 존재하지 않습니다.")
         );
-        User user = userRepository.findByUserId(requestDto.getUserId()).orElseThrow(
+        User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 안습니다.")
         );
         Comment comment = Comment.builder()
@@ -46,7 +46,7 @@ public class CommentService {
 
     @Transactional
     public void deleteComment(Long id, CommentRequestDto requestDto) {
-        User user = userRepository.findByUserId(requestDto.getUserId()).orElseThrow(
+        User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
         Comment comment = commentRepository.findById(id).orElseThrow(

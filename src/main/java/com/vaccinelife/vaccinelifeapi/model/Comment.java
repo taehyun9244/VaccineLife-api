@@ -1,10 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,19 +9,20 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-
+@Setter
 public class Comment extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+
     @ManyToOne
+//    @JoinColumn(name = "vBoardId")
     private VBoard vBoard;
 
-    @Column(nullable = false)
     @ManyToOne
+//    @JoinColumn(name = "userId")
     private User user;
 
     @Column(nullable = false)

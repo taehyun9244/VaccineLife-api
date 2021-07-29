@@ -13,7 +13,7 @@ public class VBoardRequestDto {
     private String contents;
     private String nickname;
     private int hits;
-    private int commentCount = 0;
+    private int commentCount;
     private Long userId;
     private Long surveyId;
     private int likeCount;
@@ -26,6 +26,7 @@ public class VBoardRequestDto {
                 .hits(vBoard.getHits())
                 .commentCount(vBoard.getCommentCount())
                 .likeCount(vBoard.getLikeCount())
+                .userId(vBoard.getUser().getId())
                 .surveyId(vBoard.getSurvey().getId()).build();
     }
 }

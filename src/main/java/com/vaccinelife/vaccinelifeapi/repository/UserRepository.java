@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 @EnableJpaAuditing
-@EnableJpaRepositories
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByNickName(String nickname);
-    Optional<User> findByUserId(Long id);
+    Optional<User> findByNickname(String nickname);
+//    Optional<User> findById(Long id);
     Optional<User> findByUsername(String username);
 
 }
