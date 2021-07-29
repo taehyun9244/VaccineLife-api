@@ -1,33 +1,42 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Comment {
+
+public class Comment extends Timestamped{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Long vBoardId;
+    @ManyToOne
+    private VBoard vBoard;
 
     @Column(nullable = false)
-    private String nickname;
+    @ManyToOne
+    private User user;
 
     @Column(nullable = false)
     private String comment;
 
-    public Comment(CommentRequestDto requestDto){
-        this.vBoardId = requestDto.getVBoardId();
-        this.comment = requestDto.getComment();
-        this.nickname = requestDto.getNickname();
+    @Builder
+    public Comment(VBoard vBoard, User user, String comment){
+        this.vBoard = vBoard;
+        this.user = user;
+        this.comment = comment;
     }
+//    public Comment( String comment){
+//        this.comment = comment;
+//    }
 }

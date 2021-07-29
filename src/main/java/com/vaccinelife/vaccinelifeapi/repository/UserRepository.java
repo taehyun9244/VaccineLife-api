@@ -1,4 +1,15 @@
 package com.vaccinelife.vaccinelifeapi.repository;
 
-public interface UserRepository {
+import com.vaccinelife.vaccinelifeapi.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.Optional;
+
+@EnableJpaAuditing
+@EnableJpaRepositories
+public interface UserRepository extends JpaRepository<User, Long> {
+//    Optional<User> findByNickName(String nickname);
+//    Optional<User> findByUserId(Long id);
 }
