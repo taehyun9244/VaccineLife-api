@@ -84,8 +84,8 @@ public class User {
         this.type=type;
         this.degree=degree;
         this.gender=gender;
-        this.age= this.age;
-        this.disease= this.disease;
+        this.age= age;
+        this.disease= disease;
         this.afterEffect=afterEffect;
 
     }
