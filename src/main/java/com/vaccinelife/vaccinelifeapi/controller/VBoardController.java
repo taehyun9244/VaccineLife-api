@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+@RestController
 public class VBoardController {
     private final VBoardRepository vBoardRepository;
     private final VBoardService vBoardService;

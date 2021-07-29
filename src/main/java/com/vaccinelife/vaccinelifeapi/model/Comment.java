@@ -36,7 +36,7 @@ public class Comment extends Timestamped{
         this.user = user;
         this.comment = comment;
     }
-//    public Comment( String comment){
-//        this.comment = comment;
-//    }
+    public Comment( String comment){
+        this.comment = comment;
+    }
 }

@@ -5,7 +5,8 @@ import com.vaccinelife.vaccinelifeapi.model.VBoard;
 import com.vaccinelife.vaccinelifeapi.repository.VBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
 @Service
