@@ -1,12 +1,12 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
 import com.vaccinelife.vaccinelifeapi.model.VBoard;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Builder
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class VBoardRequestDto {
     private String title;
@@ -16,10 +16,9 @@ public class VBoardRequestDto {
     private int commentCount = 0;
     private Long userId;
     private Long surveyId;
-//    private String modifiedAt;
     private int likeCount;
 
-    public static VBoardRequestDto of (VBoard vBoard){
+    public static VBoardRequestDto of(VBoard vBoard){
         return VBoardRequestDto.builder()
                 .title(vBoard.getTitle())
                 .contents(vBoard.getContents())
