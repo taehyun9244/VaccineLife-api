@@ -1,9 +1,12 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
+import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
@@ -24,10 +27,22 @@ public class SignupRequestDto {
     @NotBlank(message = "닉네임은 필수 입력 값입니다.")
     private String nickname;
 
+    private Boolean isVaccine;
 
-    private Boolean isSurvey;
+    private String type;
 
-    public SignupRequestDto(String username, String password, String passwordCheck, String nickname, Boolean isSurvey){}
+    private int degree;
+
+    private String gender;
+
+    private int age;
+
+    private Boolean disease;
+
+    private String afterEffect;
+
+
+    public SignupRequestDto(String username, String password, String passwordCheck, String nickname, String type, int degree, String gender, int age, Boolean disease, String afterEffect){}
 
 
 }

@@ -48,7 +48,7 @@ public class VBoardController {
 
     //    게시글 삭제
     @DeleteMapping("/{vBoardId}")
-    public Long deleteVBoraed(@PathVariable Long vBoardId) {
+    public Long deleteVBoard(@PathVariable Long vBoardId) {
         vBoardService.deleteVBoard(vBoardId);
         return vBoardId;
     }

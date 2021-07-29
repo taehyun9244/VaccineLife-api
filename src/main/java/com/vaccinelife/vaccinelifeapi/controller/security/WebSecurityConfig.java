@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // 필터 등록
         http
-
+                .headers().frameOptions().sameOrigin() .and()
                 .httpBasic().disable() // REST API만을 고려, 기본 설정 해제
                 .csrf().disable() // csrf 사용 X
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

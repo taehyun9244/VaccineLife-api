@@ -4,6 +4,7 @@ import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,21 +33,32 @@ public class UserService {
         String password = requestDto.getPassword();
         String passwordChecker = requestDto.getPasswordChecker();
         String nickname = requestDto.getNickname();
-        Boolean isSurvey=requestDto.getIsSurvey();
+        Boolean isVaccine=requestDto.getIsVaccine();
+        String type=requestDto.getType();
+        int degree=requestDto.getDegree();
+        String gender=requestDto.getGender();
+        int age=requestDto.getAge();
+        Boolean disease=requestDto.getDisease();
+        String afterEffect=requestDto.getAfterEffect();
+
+
+
 
         Optional<User> found = userRepository.findByUsername(username);
-        if (username.equals("") || password.equals("") || passwordChecker.equals("")) {
+        if (username.equals("") || password.equals("") || passwordChecker.equals("")|| nickname.equals("")) {
             throw new IllegalArgumentException("username || password || passwordChecker가 비어있습니다.");
         } else if (password.length() < 8) {
-            throw new IllegalArgumentException("password는 최소 4글자입니다.");
+            throw new IllegalArgumentException("password는 최소 8글자입니다.");
         } else if (!password.equals(passwordChecker)) {
             throw new IllegalArgumentException("password와 passwordChecker가 다릅니다.");
         } else if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
+        }else if (found.isPresent()) {
+            throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
         password = passwordEncoder.encode(requestDto.getPassword());
         UserRole role = UserRole.USER;
-        User user = new User(username, password, role,nickname, isSurvey );
+        User user = new User(username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
         userRepository.save(user);
     }
 }

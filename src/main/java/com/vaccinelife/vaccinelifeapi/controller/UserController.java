@@ -21,6 +21,7 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
 
+
     @PostMapping("/api/signup")
     public void registerUser(@Valid @RequestBody SignupRequestDto requestDto) {
         userService.registerUser(requestDto);
@@ -33,8 +34,13 @@ public class UserController {
         if (!passwordEncoder.matches(requestDto.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
-        return jwtTokenProvider.createToken(user.getUsername(), user.getRole(), user.getNickname(), user.getIsSurvey());
+        return jwtTokenProvider.createToken(user.getUsername(), user.getRole(), user.getNickname());
     }
+
+
+
+
+
 
 
 }

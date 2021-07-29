@@ -34,14 +34,11 @@ public class VBoard extends Timestamped{
     private int likeCount;
 
 
-//    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
 
 
-//    @JoinColumn(name = "surveyId")
-    @ManyToOne
-    private Survey survey;
 
 
     public VBoard(VBoardPostRequsetDto vBoardPostRequsetDto){

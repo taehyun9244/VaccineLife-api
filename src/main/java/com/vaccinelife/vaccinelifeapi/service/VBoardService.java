@@ -48,7 +48,7 @@ public class VBoardService {
     @Transactional
     public void deleteVBoard(Long vBoardId){
         VBoard vBoard = vBoardRepository.findById(vBoardId).orElseThrow(
-        ()-> new IllegalArgumentException("해당 아이디값을 찾을 수 없습니다.")
+                ()-> new IllegalArgumentException("해당 아이디값을 찾을 수 없습니다.")
         );
         vBoardRepository.deleteById(vBoardId);
     }

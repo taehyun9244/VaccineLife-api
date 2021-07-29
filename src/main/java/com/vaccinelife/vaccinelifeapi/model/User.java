@@ -15,8 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="user_id")
     private Long id;
 
     @Column(nullable = false)
@@ -29,14 +31,28 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
-    private Boolean isSurvey;
+    private Boolean isVaccine;
 
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private UserRole role;
 
-    @OneToOne
-    private Survey survey;
+    @Column(nullable = true)
+    private String type;
+
+    @Column(nullable = true)
+    private int degree;
+
+    @Column(nullable = true)
+    private String gender;
+
+    @Column(nullable = true)
+    private int age;
+
+    @Column(nullable = true)
+    private Boolean disease;
+
+    @Column(nullable = true)
+    private String afterEffect;
+
+
 
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
@@ -52,13 +68,28 @@ public class User {
         this.vBoards.add(vBoard);
     }
 
-    public User(String username, String password, UserRole role, String nickname, Boolean isSurvey) {
+
+
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private UserRole role;
+
+
+    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,int degree, String gender, int age, Boolean disease, String afterEffect) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.nickname = nickname;
-        this.isSurvey = isSurvey;
+        this.isVaccine=isVaccine;
+        this.type=type;
+        this.degree=degree;
+        this.gender=gender;
+        this.age= this.age;
+        this.disease= this.disease;
+        this.afterEffect=afterEffect;
+
     }
+
 
 
 }
