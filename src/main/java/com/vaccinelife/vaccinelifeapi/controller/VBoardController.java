@@ -39,7 +39,7 @@ public class VBoardController {
     }
 //    게시글 삭제
     @DeleteMapping("/api/vboard/{vboardId}")
-    public Long deleteVBoraed(@PathVariable Long vboardId){
+    public Long deleteVBoard(@PathVariable Long vboardId){
         vBoardRepository.deleteById(vboardId);
         return vboardId;
     }

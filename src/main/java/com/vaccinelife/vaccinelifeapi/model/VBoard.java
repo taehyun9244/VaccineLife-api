@@ -42,6 +42,7 @@ public class VBoard {
     @ManyToOne
     private Survey survey;
 
+
 //    public VBoard(String title, String contents, int hits, int commentCount, int likeCount, User user, Survey survey) {
 //        this.title = title;
 //        this.contents = contents;
