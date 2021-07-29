@@ -20,7 +20,7 @@ public class CommentRequestDto {
     private String comment;
 
     @Builder
-    public CommentRequestDto(Long vBoardId, Long userId,String comment){
+    public CommentRequestDto(Long vBoardId, Long userId, String comment){
         this.vBoardId = vBoardId;
         this.userId = userId;
         this.comment = comment;

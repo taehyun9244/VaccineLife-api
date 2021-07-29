@@ -28,11 +28,6 @@ public class CommentController {
         commentService.createComment(requestDto);
         return ResponseEntity.created(URI.create("api/comment/{vBoardId}")).build();
     }
-//    @PostMapping(" ")
-//    public ResponseEntity<Void> createComment(@RequestBody CommentRequestDto requestDto) {
-//        commentService.createComment(requestDto);
-//        return ResponseEntity.created(URI.create("api/comment")).build();
-//    }
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable(name = "commentId") Long id ,@RequestBody CommentRequestDto requestDto) {
