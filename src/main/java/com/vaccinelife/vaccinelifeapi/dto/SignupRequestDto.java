@@ -42,12 +42,14 @@ public class SignupRequestDto {
     private String afterEffect;
 
 
-    public SignupRequestDto(String username, String password, String passwordCheck, String nickname, String type, int degree, String gender, int age, Boolean disease, String afterEffect){
+    public SignupRequestDto(String username, String password, String passwordCheck, String nickname,Boolean isVaccine, String type, int degree, String gender, int age, Boolean disease, String afterEffect){
 
 
     }
 
     public SignupRequestDto(SignupRequestDto signupRequestDto) {
+        this.nickname=signupRequestDto.getNickname();
+        this.isVaccine=signupRequestDto.getIsVaccine();
         this.type= signupRequestDto.getType();
         this.degree=signupRequestDto.getDegree();
         this.gender=signupRequestDto.getGender();
