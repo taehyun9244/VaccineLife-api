@@ -15,8 +15,7 @@ public class VBoardSimRequestDto {
     private int likeCount;
     private int hits;
     private int commentCount;
-//    private String createdAt;
-//    private String modifiedAt;
+
 
     @Builder
     public VBoardSimRequestDto(String nickname, String title, int likeCount, int hits, int commentCount, String createdAt, String modifiedAt) {
@@ -25,8 +24,7 @@ public class VBoardSimRequestDto {
         this.likeCount = likeCount;
         this.hits = hits;
         this.commentCount = commentCount;
-//        this.createdAt = createdAt;
-//        this.modifiedAt = modifiedAt;
+
     }
     
     public static VBoardSimRequestDto of(VBoard vBoard){
@@ -36,8 +34,7 @@ public class VBoardSimRequestDto {
                 .likeCount(vBoard.getLikeCount())
                 .hits(vBoard.getHits())
                 .commentCount(vBoard.getCommentCount())
-//                .createdAt(vBoard.getCreatedAt())
-//                .modifiedAt(vBoard.getModifiedAt())
+
                 .build();
     }
     

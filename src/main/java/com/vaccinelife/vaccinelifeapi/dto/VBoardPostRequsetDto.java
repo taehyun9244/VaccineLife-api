@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VBoardPostRequsetDto {
+    private Long userId;
     private String title;
     private String contents;
 }
