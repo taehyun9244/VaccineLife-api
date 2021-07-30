@@ -18,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
+    @Column(name="userId")
     private Long id;
 
     @Column(nullable = false)
@@ -67,8 +67,6 @@ public class User {
         vBoard.setUser(this);
         this.vBoard.add(vBoard);
     }
-
-
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)

@@ -19,8 +19,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/{vBoardId}")
-    public ResponseEntity<List<CommentRequestDto>> getComment(){
-        return ResponseEntity.ok().body(commentService.getComment());
+    public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vBoardId){
+        return ResponseEntity.ok().body(commentService.getComment(vBoardId));
     }
 
     @PostMapping("/{vBoardId}")

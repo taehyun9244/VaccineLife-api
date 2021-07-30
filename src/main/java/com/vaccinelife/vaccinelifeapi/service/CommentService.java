@@ -39,8 +39,9 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public List<CommentRequestDto> getComment() {
-        List<Comment> comments = commentRepository.findAll();
+    public List<CommentRequestDto> getComment(Long vBoardId) {
+
+        List<Comment> comments = commentRepository.findAllById(vBoardId);
         return CommentRequestDto.list(comments);
     }
 

@@ -20,7 +20,7 @@ import java.util.Set;
 public class VBoard extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "v_board_id")
+    @Column(name = "vBoardId")
     private Long id;
 
     @Column(nullable = false)
@@ -38,13 +38,12 @@ public class VBoard extends Timestamped {
     @Column(nullable = false)
     private int likeCount;
 
-    @JoinColumn(name = "user_id")
-    @ManyToOne
+    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany
+    @OneToMany(mappedBy = "vBoard")
     private Set<Comment> comment = new HashSet<>();
-
     public void add(Comment comment) {
         comment.setVBoard(this);
         this.comment.add(comment);

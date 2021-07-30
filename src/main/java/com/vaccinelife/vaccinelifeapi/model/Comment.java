@@ -16,17 +16,16 @@ public class Comment extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @ManyToOne
-    @JoinColumn(name = "v_board_id")
-    private VBoard vBoard;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Column(nullable = false)
     private String comment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vBoardId")
+    private VBoard vBoard;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private User user;
 
     @Builder
     public Comment(VBoard vBoard, User user, String comment){
