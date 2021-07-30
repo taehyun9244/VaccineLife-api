@@ -2,6 +2,7 @@ package com.vaccinelife.vaccinelifeapi.model;
 
 import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class VBoard extends Timestamped{
+
+public class VBoard extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "v_board_id")
@@ -42,19 +44,28 @@ public class VBoard extends Timestamped{
 
     @OneToMany
     private Set<Comment> comment = new HashSet<>();
-    public void add(Comment comment){
+
+    public void add(Comment comment) {
         comment.setVBoard(this);
         this.comment.add(comment);
     }
 
 
+//    @Builder
+//    public VBoard(VBoardPostRequsetDto vBoardPostRequsetDto, User user){
+//        this.user = vBoardPostRequsetDto.getUserId();
+//        this.title = vBoardPostRequsetDto.getTitle();
+//        this.contents = vBoardPostRequsetDto.getContents();
+//    }
 
-    public VBoard(VBoardPostRequsetDto vBoardPostRequsetDto){
-        this.title = vBoardPostRequsetDto.getTitle();
-        this.contents = vBoardPostRequsetDto.getContents();
+    @Builder
+    public VBoard(String title, String contents, User user) {
+        this.title = title;
+        this.contents = contents;
+        this.user = user;
     }
 
-    public void update(VBoardRequestDto requestDto){
+    public void update(VBoardRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
     }
