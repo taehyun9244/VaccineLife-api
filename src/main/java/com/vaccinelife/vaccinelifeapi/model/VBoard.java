@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
 import lombok.Builder;
@@ -39,9 +40,10 @@ public class VBoard extends Timestamped {
     private int likeCount;
 
     @JoinColumn(name = "userId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vBoard")
     private Set<Comment> comment = new HashSet<>();
     public void add(Comment comment) {

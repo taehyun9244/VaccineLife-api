@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -53,7 +54,7 @@ public class User {
     private String afterEffect;
 
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Comment> comment = new HashSet<>();
     public void add(Comment comment) {
@@ -61,6 +62,7 @@ public class User {
         this.comment.add(comment);
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<VBoard> vBoard = new HashSet<>();
     public void add(VBoard vBoard){

@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
+import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VBoard;
 import lombok.*;
 
@@ -15,15 +16,17 @@ public class VBoardSimRequestDto {
     private int likeCount;
     private int hits;
     private int commentCount;
+    private User user;
 
 
     @Builder
-    public VBoardSimRequestDto(String nickname, String title, int likeCount, int hits, int commentCount, String createdAt, String modifiedAt) {
+    public VBoardSimRequestDto(String nickname, String title, int likeCount, int hits, int commentCount,User user) {
         this.nickname = nickname;
         this.title = title;
         this.likeCount = likeCount;
         this.hits = hits;
         this.commentCount = commentCount;
+        this.user = user;
 
     }
     
@@ -34,7 +37,7 @@ public class VBoardSimRequestDto {
                 .likeCount(vBoard.getLikeCount())
                 .hits(vBoard.getHits())
                 .commentCount(vBoard.getCommentCount())
-
+                .user(vBoard.getUser())
                 .build();
     }
     
