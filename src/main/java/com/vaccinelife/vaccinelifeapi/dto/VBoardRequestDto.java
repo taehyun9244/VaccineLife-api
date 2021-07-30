@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
+import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VBoard;
 import lombok.*;
 
@@ -13,8 +14,8 @@ public class VBoardRequestDto {
     private String contents;
     private int hits;
     private int commentCount;
-    private Long userId;
     private int likeCount;
+    private User user;
 
     public static VBoardRequestDto of(VBoard vBoard){
         return VBoardRequestDto.builder()
@@ -23,7 +24,7 @@ public class VBoardRequestDto {
                 .hits(vBoard.getHits())
                 .commentCount(vBoard.getCommentCount())
                 .likeCount(vBoard.getLikeCount())
-                .userId(vBoard.getUser().getId())
+                .user(vBoard.getUser())
                 .build();
     }
 }
