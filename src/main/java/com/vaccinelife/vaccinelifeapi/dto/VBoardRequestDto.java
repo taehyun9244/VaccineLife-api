@@ -23,6 +23,7 @@ public class VBoardRequestDto {
                 .hits(vBoard.getHits())
                 .commentCount(vBoard.getCommentCount())
                 .likeCount(vBoard.getLikeCount())
-                .userId(vBoard.getUser().getId()).build();
+                .userId(vBoard.getUser().getId())
+                .build();
     }
 }

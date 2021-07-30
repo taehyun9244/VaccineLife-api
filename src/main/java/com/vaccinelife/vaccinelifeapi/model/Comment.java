@@ -18,11 +18,11 @@ public class Comment extends Timestamped{
 
 
     @ManyToOne
-//    @JoinColumn(name = "vBoardId")
+    @JoinColumn(name = "vBoardId")
     private VBoard vBoard;
 
     @ManyToOne
-//    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column(nullable = false)

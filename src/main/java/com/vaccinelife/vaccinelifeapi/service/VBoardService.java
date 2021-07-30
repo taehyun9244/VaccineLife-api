@@ -3,7 +3,10 @@ package com.vaccinelife.vaccinelifeapi.service;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardSimRequestDto;
+import com.vaccinelife.vaccinelifeapi.model.Comment;
+import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VBoard;
+import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import com.vaccinelife.vaccinelifeapi.repository.VBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,7 @@ import java.util.List;
 public class VBoardService {
 
     private final VBoardRepository vBoardRepository;
-
+    private final UserRepository userRepository;
     @Transactional
     public VBoardRequestDto getDetailVBoard(Long vBoardId){
         VBoard vBoard = vBoardRepository.findById(vBoardId).orElseThrow(
@@ -32,7 +35,13 @@ public class VBoardService {
 
     @Transactional
     public void createVBoard(VBoardPostRequsetDto requestDto){
-        VBoard vBoard = new VBoard(requestDto);
+        User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
+                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+        );
+        VBoard vBoard = VBoard.builder()
+                .user(user)
+                .title(requestDto.getTitle())
+                .contents(requestDto.getContents()).build();
         vBoardRepository.save(vBoard);
     }
 
