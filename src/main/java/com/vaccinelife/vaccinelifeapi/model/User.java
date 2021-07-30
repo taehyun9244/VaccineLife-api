@@ -55,17 +55,17 @@ public class User {
 
 
     @OneToMany(mappedBy = "user")
-    private Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comment = new HashSet<>();
     public void add(Comment comment) {
         comment.setUser(this);
-        this.comments.add(comment);
+        this.comment.add(comment);
     }
 
     @OneToMany(mappedBy = "user")
-    private Set<VBoard> vBoards = new HashSet<>();
+    private Set<VBoard> vBoard = new HashSet<>();
     public void add(VBoard vBoard){
         vBoard.setUser(this);
-        this.vBoards.add(vBoard);
+        this.vBoard.add(vBoard);
     }
 
 

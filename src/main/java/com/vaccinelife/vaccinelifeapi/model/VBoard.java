@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -16,6 +18,7 @@ import javax.persistence.*;
 public class VBoard extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "v_board_id")
     private Long id;
 
     @Column(nullable = false)
@@ -33,11 +36,16 @@ public class VBoard extends Timestamped{
     @Column(nullable = false)
     private int likeCount;
 
-
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
 
+    @OneToMany
+    private Set<Comment> comment = new HashSet<>();
+    public void add(Comment comment){
+        comment.setVBoard(this);
+        this.comment.add(comment);
+    }
 
 
 
