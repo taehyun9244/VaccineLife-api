@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class CommentPostRequestDto {
-    private Long boardId;
+    private Long vacBoardId;
     private Long userId;
     private String comment;
 }

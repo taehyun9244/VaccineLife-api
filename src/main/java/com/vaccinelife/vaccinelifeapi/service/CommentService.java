@@ -4,29 +4,27 @@ import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.Comment;
 import com.vaccinelife.vaccinelifeapi.model.User;
-import com.vaccinelife.vaccinelifeapi.model.VBoard;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.repository.CommentRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
-import com.vaccinelife.vaccinelifeapi.repository.VBoardRepository;
-import lombok.AllArgsConstructor;
+import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final VBoardRepository vBoardRepository;
+    private final VacBoardRepository vacBoardRepository;
     private final UserRepository userRepository;
 
     @Transactional
     public void createComment(CommentPostRequestDto requestDto) {
-        VBoard vBoard = vBoardRepository.findById(requestDto.getBoardId()).orElseThrow(
+        VacBoard vacBoard = vacBoardRepository.findById(requestDto.getVacBoardId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시물이 존재하지 않습니다.")
         );
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
@@ -35,7 +33,7 @@ public class CommentService {
 
         Comment comment = Comment.builder()
                 .user(user)
-                .vBoard(vBoard)
+                .vacBoard(vacBoard)
                 .comment(requestDto.getComment()).build();
         commentRepository.save(comment);
     }

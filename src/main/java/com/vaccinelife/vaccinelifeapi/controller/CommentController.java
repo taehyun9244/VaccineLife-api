@@ -20,10 +20,6 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-//    @GetMapping("/{vBoardId}")
-//    public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vBoardId){
-//        return ResponseEntity.ok().body(commentService.getComment(vBoardId));
-//    }
 
     @PostMapping("")
     public ResponseEntity<Void> createComment( @RequestBody CommentPostRequestDto requestDto){

@@ -2,7 +2,7 @@ package com.vaccinelife.vaccinelifeapi.dto;
 
 import com.vaccinelife.vaccinelifeapi.model.Comment;
 import com.vaccinelife.vaccinelifeapi.model.User;
-import com.vaccinelife.vaccinelifeapi.model.VBoard;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import lombok.*;
 
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VBoardRequestDto {
-    private Long vBoardId;
+public class VacBoardRequestDto {
+    private Long vacBoardId;
     private String title;
     private String contents;
     private int hits;
@@ -22,9 +22,9 @@ public class VBoardRequestDto {
     private User user;
     private List<Comment> comments;
 
-    public static VBoardRequestDto of(VBoard vBoard){
-        return VBoardRequestDto.builder()
-                .vBoardId(vBoard.getId())
+    public static VacBoardRequestDto of(VacBoard vBoard){
+        return VacBoardRequestDto.builder()
+                .vacBoardId(vBoard.getId())
                 .title(vBoard.getTitle())
                 .contents(vBoard.getContents())
                 .hits(vBoard.getHits())

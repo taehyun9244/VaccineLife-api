@@ -1,6 +1,5 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
-import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,17 +19,17 @@ public class Comment extends Timestamped{
     private String comment;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vBoardId")
-    private VBoard vBoard;
+    @JoinColumn(name = "vacBoardId")
+    private VacBoard vacBoard;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
     @Builder
-    public Comment(String comment, VBoard vBoard, User user) {
+    public Comment(String comment, VacBoard vacBoard, User user) {
         this.comment = comment;
-        this.vBoard = vBoard;
+        this.vacBoard = vacBoard;
         this.user = user;
     }
 

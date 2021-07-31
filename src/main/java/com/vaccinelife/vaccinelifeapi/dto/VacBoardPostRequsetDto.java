@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VBoardPostRequsetDto {
+public class VacBoardPostRequsetDto {
     private Long userId;
     private String title;
     private String contents;

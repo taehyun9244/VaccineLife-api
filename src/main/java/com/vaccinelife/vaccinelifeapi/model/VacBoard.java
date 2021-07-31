@@ -2,25 +2,21 @@ package com.vaccinelife.vaccinelifeapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
-import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @NoArgsConstructor
 @Entity
 @Getter
 @Setter
-public class VBoard extends Timestamped {
+public class VacBoard extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,11 +43,11 @@ public class VBoard extends Timestamped {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vBoard", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties({"vBoard"})
+    @OneToMany(mappedBy = "vacBoard", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"vacBoard"})
     private List<Comment> comment;
     public void add(Comment comment) {
-        comment.setVBoard(this);
+        comment.setVacBoard(this);
         this.comment.add(comment);
     }
 
@@ -64,13 +60,13 @@ public class VBoard extends Timestamped {
 //    }
 
     @Builder
-    public VBoard(String title, String contents, User user) {
+    public VacBoard(String title, String contents, User user) {
         this.title = title;
         this.contents = contents;
         this.user = user;
     }
 
-    public void update(VBoardRequestDto requestDto) {
+    public void update(VacBoardRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
     }

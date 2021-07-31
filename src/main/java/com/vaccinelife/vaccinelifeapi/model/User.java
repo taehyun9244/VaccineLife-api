@@ -69,10 +69,10 @@ public class User extends Timestamped{
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
-    private Set<VBoard> vBoard = new HashSet<>();
-    public void add(VBoard vBoard){
-        vBoard.setUser(this);
-        this.vBoard.add(vBoard);
+    private Set<VacBoard> vacBoard = new HashSet<>();
+    public void add(VacBoard vacBoard){
+        vacBoard.setUser(this);
+        this.vacBoard.add(vacBoard);
     }
 
     @Column(nullable = false)

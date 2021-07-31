@@ -1,7 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
 import com.vaccinelife.vaccinelifeapi.model.User;
-import com.vaccinelife.vaccinelifeapi.model.VBoard;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class VBoardSimRequestDto {
-    private Long vBoardId;
+public class VacBoardSimRequestDto {
+    private Long vacBoardId;
     private String title;
     private int likeCount;
     private int hits;
@@ -20,8 +20,8 @@ public class VBoardSimRequestDto {
 
 
     @Builder
-    public VBoardSimRequestDto( Long vBoardId, String title, int likeCount, int hits, int commentCount,User user) {
-        this.vBoardId = vBoardId;
+    public VacBoardSimRequestDto(Long vacBoardId, String title, int likeCount, int hits, int commentCount, User user) {
+        this.vacBoardId = vacBoardId;
         this.title = title;
         this.likeCount = likeCount;
         this.hits = hits;
@@ -30,9 +30,9 @@ public class VBoardSimRequestDto {
 
     }
     
-    public static VBoardSimRequestDto of(VBoard vBoard){
-        return VBoardSimRequestDto.builder()
-                .vBoardId(vBoard.getId())
+    public static VacBoardSimRequestDto of(VacBoard vBoard){
+        return VacBoardSimRequestDto.builder()
+                .vacBoardId(vBoard.getId())
                 .title(vBoard.getTitle())
 
                 .likeCount(vBoard.getLikeCount())
@@ -42,12 +42,12 @@ public class VBoardSimRequestDto {
                 .build();
     }
     
-    public static List<VBoardSimRequestDto> list(List<VBoard> boards){
-        ArrayList<VBoardSimRequestDto> VBoardSimRequestDtos = new ArrayList<>();
-        for(VBoard vBoard : boards){
-            VBoardSimRequestDtos.add(of(vBoard));
+    public static List<VacBoardSimRequestDto> list(List<VacBoard> boards){
+        ArrayList<VacBoardSimRequestDto> VacBoardSimRequestDtos = new ArrayList<>();
+        for(VacBoard vacBoard : boards){
+            VacBoardSimRequestDtos.add(of(vacBoard));
         }
-        return VBoardSimRequestDtos;
+        return VacBoardSimRequestDtos;
     }
     
 }
