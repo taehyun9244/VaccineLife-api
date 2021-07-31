@@ -25,6 +25,7 @@ public class VBoardService {
         VBoard vBoard = vBoardRepository.findById(vBoardId).orElseThrow(
                 ()-> new IllegalArgumentException("userError")
         );
+
         return VBoardRequestDto.of(vBoard);
     }
     @Transactional

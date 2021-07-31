@@ -19,11 +19,11 @@ public class Comment extends Timestamped{
     @Column(nullable = false)
     private String comment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vBoardId")
     private VBoard vBoard;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
@@ -33,8 +33,6 @@ public class Comment extends Timestamped{
         this.vBoard = vBoard;
         this.user = user;
     }
-
-
 
 
 }

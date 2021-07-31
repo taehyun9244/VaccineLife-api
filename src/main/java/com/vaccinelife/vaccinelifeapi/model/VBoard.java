@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VBoardRequestDto;
 import lombok.Builder;
@@ -47,7 +48,8 @@ public class VBoard extends Timestamped {
 
     @JsonIgnore
     @OneToMany(mappedBy = "vBoard", fetch = FetchType.EAGER)
-    private List<Comment> comment = new ArrayList<>();
+    @JsonIgnoreProperties({"vBoard"})
+    private List<Comment> comment;
     public void add(Comment comment) {
         comment.setVBoard(this);
         this.comment.add(comment);

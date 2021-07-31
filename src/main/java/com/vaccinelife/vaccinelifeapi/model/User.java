@@ -2,6 +2,7 @@ package com.vaccinelife.vaccinelifeapi.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
+public class User extends Timestamped{
 
 
     @Id
@@ -58,6 +59,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"comment"})
     private List<Comment> comment = new ArrayList<>();
     public void add(Comment comment) {
         comment.setUser(this);
@@ -66,6 +68,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
     private Set<VBoard> vBoard = new HashSet<>();
     public void add(VBoard vBoard){
         vBoard.setUser(this);
