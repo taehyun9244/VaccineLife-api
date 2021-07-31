@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class VBoardSimRequestDto {
-    private Long id;
+    private Long vBoardId;
     private String title;
     private int likeCount;
     private int hits;
@@ -20,8 +20,8 @@ public class VBoardSimRequestDto {
 
 
     @Builder
-    public VBoardSimRequestDto( Long id, String title, int likeCount, int hits, int commentCount,User user) {
-        this.id = id;
+    public VBoardSimRequestDto( Long vBoardId, String title, int likeCount, int hits, int commentCount,User user) {
+        this.vBoardId = vBoardId;
         this.title = title;
         this.likeCount = likeCount;
         this.hits = hits;
@@ -32,7 +32,7 @@ public class VBoardSimRequestDto {
     
     public static VBoardSimRequestDto of(VBoard vBoard){
         return VBoardSimRequestDto.builder()
-                .id(vBoard.getId())
+                .vBoardId(vBoard.getId())
                 .title(vBoard.getTitle())
 
                 .likeCount(vBoard.getLikeCount())

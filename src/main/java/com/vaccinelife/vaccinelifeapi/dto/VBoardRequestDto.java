@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VBoardRequestDto {
-    private Long id;
+    private Long vBoardId;
     private String title;
     private String contents;
     private int hits;
@@ -24,7 +24,7 @@ public class VBoardRequestDto {
 
     public static VBoardRequestDto of(VBoard vBoard){
         return VBoardRequestDto.builder()
-                .id(vBoard.getId())
+                .vBoardId(vBoard.getId())
                 .title(vBoard.getTitle())
                 .contents(vBoard.getContents())
                 .hits(vBoard.getHits())
