@@ -30,15 +30,15 @@ public class VacBoardSimRequestDto {
 
     }
     
-    public static VacBoardSimRequestDto of(VacBoard vBoard){
+    public static VacBoardSimRequestDto of(VacBoard vacBoard){
         return VacBoardSimRequestDto.builder()
-                .vacBoardId(vBoard.getId())
-                .title(vBoard.getTitle())
+                .vacBoardId(vacBoard.getId())
+                .title(vacBoard.getTitle())
 
-                .likeCount(vBoard.getLikeCount())
-                .hits(vBoard.getHits())
-                .commentCount(vBoard.getCommentCount())
-                .user(vBoard.getUser())
+                .likeCount(vacBoard.getLikeCount())
+                .hits(vacBoard.getHits())
+                .commentCount(vacBoard.getCommentCount())
+                .user(vacBoard.getUser())
                 .build();
     }
     

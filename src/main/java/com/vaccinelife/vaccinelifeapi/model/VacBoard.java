@@ -20,7 +20,7 @@ public class VacBoard extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vBoardId")
+    @Column(name = "vacBoardId")
     private Long id;
 
     @Column(nullable = false)

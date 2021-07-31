@@ -22,16 +22,16 @@ public class VacBoardRequestDto {
     private User user;
     private List<Comment> comments;
 
-    public static VacBoardRequestDto of(VacBoard vBoard){
+    public static VacBoardRequestDto of(VacBoard vacBoard){
         return VacBoardRequestDto.builder()
-                .vacBoardId(vBoard.getId())
-                .title(vBoard.getTitle())
-                .contents(vBoard.getContents())
-                .hits(vBoard.getHits())
-                .commentCount(vBoard.getCommentCount())
-                .likeCount(vBoard.getLikeCount())
-                .user(vBoard.getUser())
-                .comments(vBoard.getComment())
+                .vacBoardId(vacBoard.getId())
+                .title(vacBoard.getTitle())
+                .contents(vacBoard.getContents())
+                .hits(vacBoard.getHits())
+                .commentCount(vacBoard.getCommentCount())
+                .likeCount(vacBoard.getLikeCount())
+                .user(vacBoard.getUser())
+                .comments(vacBoard.getComment())
                 .build();
     }
 }

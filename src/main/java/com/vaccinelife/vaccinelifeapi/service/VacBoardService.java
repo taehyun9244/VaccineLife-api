@@ -46,20 +46,20 @@ public class VacBoardService {
     }
 
     @Transactional
-    public Long update(Long vBoardId, VacBoardRequestDto requestDto) {
-        VacBoard vacBoard = vacBoardRepository.findById(vBoardId).orElseThrow(
+    public Long update(Long vacBoardId, VacBoardRequestDto requestDto) {
+        VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         vacBoard.update(requestDto);
-        return vBoardId;
+        return vacBoardId;
     }
 
     @Transactional
-    public void deleteVacBoard(Long vBoardId){
-        VacBoard vacBoard = vacBoardRepository.findById(vBoardId).orElseThrow(
+    public void deleteVacBoard(Long vacBoardId){
+        VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 아이디값을 찾을 수 없습니다.")
         );
-        vacBoardRepository.deleteById(vBoardId);
+        vacBoardRepository.deleteById(vacBoardId);
     }
 
 }
