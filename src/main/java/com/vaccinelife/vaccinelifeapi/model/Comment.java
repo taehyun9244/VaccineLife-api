@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @Entity
 @Setter
@@ -28,12 +28,13 @@ public class Comment extends Timestamped{
     private User user;
 
     @Builder
-    public Comment(VBoard vBoard, User user, String comment){
+    public Comment(String comment, VBoard vBoard, User user) {
+        this.comment = comment;
         this.vBoard = vBoard;
         this.user = user;
-        this.comment = comment;
     }
-    public Comment( String comment){
-        this.comment = comment;
-    }
+
+
+
+
 }

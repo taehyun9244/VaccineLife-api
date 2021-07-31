@@ -1,12 +1,14 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 
+import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.Comment;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -23,10 +25,10 @@ public class CommentController {
         return ResponseEntity.ok().body(commentService.getComment(vBoardId));
     }
 
-    @PostMapping("/{vBoardId}")
-    public ResponseEntity<Void> createComment(@RequestBody CommentRequestDto requestDto){
+    @PostMapping("")
+    public ResponseEntity<Void> createComment( @RequestBody CommentPostRequestDto requestDto){
         commentService.createComment(requestDto);
-        return ResponseEntity.created(URI.create("api/comment/{vBoardId}")).build();
+        return ResponseEntity.created(URI.create("/api/comment")).build();
     }
 
     @DeleteMapping("/{commentId}")

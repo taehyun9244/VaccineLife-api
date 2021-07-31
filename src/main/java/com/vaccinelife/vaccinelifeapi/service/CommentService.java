@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
+import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.Comment;
 import com.vaccinelife.vaccinelifeapi.model.User;
@@ -24,13 +25,14 @@ public class CommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void createComment(CommentRequestDto requestDto) {
-        VBoard vBoard = vBoardRepository.findById(requestDto.getVBoardId()).orElseThrow(
+    public void createComment(CommentPostRequestDto requestDto) {
+        VBoard vBoard = vBoardRepository.findById(requestDto.getBoardId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시물이 존재하지 않습니다.")
         );
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 안습니다.")
         );
+
         Comment comment = Comment.builder()
                 .user(user)
                 .vBoard(vBoard)
@@ -40,7 +42,6 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<CommentRequestDto> getComment(Long vBoardId) {
-
         List<Comment> comments = commentRepository.findAllById(vBoardId);
         return CommentRequestDto.list(comments);
     }

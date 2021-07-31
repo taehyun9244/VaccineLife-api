@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -17,10 +19,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-
 public class VBoard extends Timestamped {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vBoardId")
     private Long id;
 
@@ -44,8 +46,8 @@ public class VBoard extends Timestamped {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vBoard")
-    private Set<Comment> comment = new HashSet<>();
+    @OneToMany(mappedBy = "vBoard", fetch = FetchType.EAGER)
+    private List<Comment> comment = new ArrayList<>();
     public void add(Comment comment) {
         comment.setVBoard(this);
         this.comment.add(comment);

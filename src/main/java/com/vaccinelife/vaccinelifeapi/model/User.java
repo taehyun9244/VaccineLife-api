@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Setter
@@ -56,7 +58,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private Set<Comment> comment = new HashSet<>();
+    private List<Comment> comment = new ArrayList<>();
     public void add(Comment comment) {
         comment.setUser(this);
         this.comment.add(comment);

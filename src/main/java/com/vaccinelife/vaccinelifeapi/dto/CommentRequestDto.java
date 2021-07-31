@@ -14,27 +14,30 @@ import java.util.Optional;
 
 @Getter
 @NoArgsConstructor
+@Builder
 public class CommentRequestDto {
     private Long vBoardId;
     private Long userId;
     private String comment;
 
-    @Builder
-    public CommentRequestDto(Long vBoardId, Long userId,String comment){
+
+
+        public CommentRequestDto(Long vBoardId, Long userId,String comment){
         this.vBoardId = vBoardId;
         this.userId = userId;
         this.comment = comment;
     }
 
-    public static CommentRequestDto of(Comment comment){
+    public static CommentRequestDto of(Comment comment) {
         return CommentRequestDto.builder()
                 .vBoardId(comment.getVBoard().getId())
                 .userId(comment.getUser().getId())
                 .comment(comment.getComment()).build();
     }
-    public static List<CommentRequestDto> list(List<Comment> comments){
+
+    public static List<CommentRequestDto> list(List<Comment> comments) {
         ArrayList<CommentRequestDto> commentRequestDtos = new ArrayList<>();
-        for(Comment comment : comments){
+        for (Comment comment : comments) {
             commentRequestDtos.add(of(comment));
         }
         return commentRequestDtos;
