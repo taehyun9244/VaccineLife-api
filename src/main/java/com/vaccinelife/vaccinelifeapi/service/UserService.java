@@ -1,10 +1,10 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
+import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;

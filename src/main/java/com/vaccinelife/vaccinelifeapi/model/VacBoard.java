@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -71,5 +72,15 @@ public class VacBoard extends Timestamped {
         this.contents = requestDto.getContents();
     }
 
+    @OneToMany(mappedBy = "vacBoard", cascade = {CascadeType.REMOVE})
+    private List<VacBoardLike> vacBoardLikeList = new ArrayList<>();
+
+    public void updateLikeNum(int count) {
+        this.likeCount += count;
+    }
+
+    public void deleteLikeNum(int count) {
+        this.likeCount -= count;
+    }
 
 }

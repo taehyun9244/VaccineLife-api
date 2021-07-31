@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.controller.security;
 
 
+import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

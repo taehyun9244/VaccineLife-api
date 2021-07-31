@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 import com.vaccinelife.vaccinelifeapi.controller.security.JwtTokenProvider;
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
+import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import com.vaccinelife.vaccinelifeapi.service.UserService;
