@@ -21,7 +21,7 @@ public class VacBoard extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vacBoardId")
+
     private Long id;
 
     @Column(nullable = false)
@@ -53,6 +53,9 @@ public class VacBoard extends Timestamped {
     }
 
 
+
+
+
 //    @Builder
 //    public VBoard(VBoardPostRequsetDto vBoardPostRequsetDto, User user){
 //        this.user = vBoardPostRequsetDto.getUserId();
@@ -79,8 +82,5 @@ public class VacBoard extends Timestamped {
         this.likeCount += count;
     }
 
-    public void deleteLikeNum(int count) {
-        this.likeCount -= count;
-    }
 
 }

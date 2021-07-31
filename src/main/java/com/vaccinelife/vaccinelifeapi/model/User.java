@@ -22,7 +22,6 @@ public class User extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="userId")
     private Long id;
 
     @Column(nullable = false)
@@ -42,13 +41,13 @@ public class User extends Timestamped{
     private String type;
 
     @Column(nullable = true)
-    private int degree;
+    private Integer degree;
 
     @Column(nullable = true)
     private String gender;
 
     @Column(nullable = true)
-    private int age;
+    private Integer age;
 
     @Column(nullable = true)
     private Boolean disease;
@@ -80,7 +79,7 @@ public class User extends Timestamped{
     private UserRole role;
 
 
-    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,int degree, String gender, int age, Boolean disease, String afterEffect) {
+    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, Integer age, Boolean disease, String afterEffect) {
         this.username = username;
         this.password = password;
         this.role = role;

@@ -21,11 +21,11 @@ public class VacBoardLike {
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "vacBoardId")
     private VacBoard vacBoard;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "userId")
     private User user;
 
 

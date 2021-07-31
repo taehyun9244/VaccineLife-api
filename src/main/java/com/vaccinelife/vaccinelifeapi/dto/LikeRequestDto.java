@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 public class LikeRequestDto {
     private Long vacBoardId;
-    private String userId;
+    private Long userId;
 
 }
