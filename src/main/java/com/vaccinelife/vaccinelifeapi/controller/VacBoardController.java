@@ -5,12 +5,14 @@ import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
+import com.vaccinelife.vaccinelifeapi.service.VisitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,12 +20,17 @@ import java.util.List;
 
 public class VacBoardController {
     private final VacBoardService vacBoardService;
-
+//    private final VisitorService visitorService;
     //    전체 게시판 조회
     @GetMapping("")
     public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBorad(){
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBorad());
     }
+
+//    @GetMapping("api/visitors")
+//    public Map<String, Object> getVacBoard() {
+//        return visitorService.visitorCounter();
+//    }
 
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
