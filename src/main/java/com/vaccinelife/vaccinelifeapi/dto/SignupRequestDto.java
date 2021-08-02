@@ -35,14 +35,14 @@ public class SignupRequestDto {
 
     private String gender;
 
-    private int age;
+    private String age;
 
-    private Boolean disease;
+    private String disease;
 
     private String afterEffect;
 
 
-    public SignupRequestDto(String username, String password, String passwordCheck, String nickname,Boolean isVaccine, String type, int degree, String gender, int age, Boolean disease, String afterEffect){
+    public SignupRequestDto(String username, String password, String passwordCheck, String nickname,Boolean isVaccine, String type, int degree, String gender, String age, String disease, String afterEffect){
 
 
     }

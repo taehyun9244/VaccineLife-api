@@ -1,4 +1,4 @@
-package com.vaccinelife.vaccinelifeapi.controller.security;
+package com.vaccinelife.vaccinelifeapi.security;
 
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import io.jsonwebtoken.Claims;
@@ -33,7 +33,7 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userPk, UserRole roles, String nickname, Boolean isVaccine, String type,int degree, String gender, int age, Boolean disease, String afterEffect) {
+    public String createToken(String userPk, UserRole roles, String nickname, Boolean isVaccine, String type,int degree, String gender, String age, String disease, String afterEffect) {
         Claims claims = Jwts.claims().setSubject(userPk);
         // claim : JWT payload 에 저장되는 정보단위
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장

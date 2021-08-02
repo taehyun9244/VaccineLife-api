@@ -1,18 +1,14 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.controller.security.UserDetailsImpl;
 import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
-import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardLikeRepository;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -51,4 +47,5 @@ public class VacBoardLikeService {
             return new ResponseDto(true, "Basic 게시글 좋아요 추가", 200);
         }
     }
+
 }

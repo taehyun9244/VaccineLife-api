@@ -47,10 +47,10 @@ public class User extends Timestamped{
     private String gender;
 
     @Column(nullable = true)
-    private Integer age;
+    private String age;
 
     @Column(nullable = true)
-    private Boolean disease;
+    private String disease;
 
     @Column(nullable = true)
     private String afterEffect;
@@ -79,7 +79,7 @@ public class User extends Timestamped{
     private UserRole role;
 
 
-    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, Integer age, Boolean disease, String afterEffect) {
+    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, String age, String disease, String afterEffect) {
         this.username = username;
         this.password = password;
         this.role = role;

@@ -28,6 +28,7 @@ public class VacBoardController {
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
     public ResponseEntity<VacBoardRequestDto> getDetailVacBoard(@PathVariable Long vacBoardId) {
+//        vacBoardService.IpChecker(); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
     }
 

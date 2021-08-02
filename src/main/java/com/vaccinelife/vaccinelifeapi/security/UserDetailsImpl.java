@@ -1,6 +1,5 @@
-package com.vaccinelife.vaccinelifeapi.controller.security;
+package com.vaccinelife.vaccinelifeapi.security;
 
-import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import org.springframework.security.core.GrantedAuthority;

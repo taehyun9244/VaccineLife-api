@@ -1,4 +1,4 @@
-package com.vaccinelife.vaccinelifeapi.controller.security;
+package com.vaccinelife.vaccinelifeapi.security;
 
 
 import lombok.RequiredArgsConstructor;

@@ -40,8 +40,8 @@ public class UserService {
         String type=requestDto.getType();
         int degree=requestDto.getDegree();
         String gender=requestDto.getGender();
-        int age=requestDto.getAge();
-        Boolean disease=requestDto.getDisease();
+        String age=requestDto.getAge();
+        String disease=requestDto.getDisease();
         String afterEffect=requestDto.getAfterEffect();
 
 

@@ -3,13 +3,18 @@ package com.vaccinelife.vaccinelifeapi.service;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
+import com.vaccinelife.vaccinelifeapi.model.Ip;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
+import com.vaccinelife.vaccinelifeapi.repository.IpRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -19,6 +24,8 @@ public class VacBoardService {
 
     private final VacBoardRepository vacBoardRepository;
     private final UserRepository userRepository;
+    private final IpRepository ipRepository;
+
     @Transactional
     public VacBoardRequestDto getDetailVacBoard(Long vacBoardId){
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
@@ -61,5 +68,21 @@ public class VacBoardService {
         );
         vacBoardRepository.deleteById(vacBoardId);
     }
+//
+//    @Transactional
+//    public Ip IpChecker() {
+//        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+//        String visitorIp = req.getHeader("X-FORWARDED-FOR");
+//        if (visitorIp == null)
+//            visitorIp = req.getRemoteAddr();
+//        Ip ip = new Ip(visitorIp);
+//        List<Ip> IpList = ipRepository.findAll();
+//        if (IpList.contains(ip)) {
+//            ipRepository.save(ip);
+//            return ip;
+//        }else{
+//            return ip;
+//        }
+//    }
 
 }
