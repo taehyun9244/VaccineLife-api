@@ -34,7 +34,6 @@ public class VacBoardSimRequestDto {
         return VacBoardSimRequestDto.builder()
                 .vacBoardId(vacBoard.getId())
                 .title(vacBoard.getTitle())
-
                 .likeCount(vacBoard.getLikeCount())
                 .hits(vacBoard.getHits())
                 .commentCount(vacBoard.getCommentCount())

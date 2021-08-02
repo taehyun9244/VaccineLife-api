@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/api/vacBoard")
 
 public class VacBoardController {
-    private final VacBoardRepository vacBoardRepository;
     private final VacBoardService vacBoardService;
 
     //    전체 게시판 조회

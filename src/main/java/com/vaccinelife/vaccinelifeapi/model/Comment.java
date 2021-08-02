@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Comment extends Timestamped{
     private String comment;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "vacBoardId")
     private VacBoard vacBoard;
 

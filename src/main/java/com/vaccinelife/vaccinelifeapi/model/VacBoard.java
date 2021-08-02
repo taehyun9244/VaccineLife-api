@@ -54,15 +54,6 @@ public class VacBoard extends Timestamped {
 
 
 
-
-
-//    @Builder
-//    public VBoard(VBoardPostRequsetDto vBoardPostRequsetDto, User user){
-//        this.user = vBoardPostRequsetDto.getUserId();
-//        this.title = vBoardPostRequsetDto.getTitle();
-//        this.contents = vBoardPostRequsetDto.getContents();
-//    }
-
     @Builder
     public VacBoard(String title, String contents, User user) {
         this.title = title;
