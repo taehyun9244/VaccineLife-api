@@ -30,8 +30,9 @@ public class VacBoardController {
 
     //    전체 게시판 조회
     @GetMapping("")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(Model model, @PageableDefault(size = 10,page = 10,sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
         model.addAttribute("getSimpleVacBoard", vacBoardService.getSimpleVacBoard(pageable));
+
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
 
@@ -41,7 +42,7 @@ public class VacBoardController {
     }
 
 
-    @GetMapping("api/vacBoard/visitors")
+    @GetMapping("api/vacBoard/visitors/{vacBoardId}")
     public Map<String, Object> getVacBoard() {
         return visitorService.visitorCounter();
     }

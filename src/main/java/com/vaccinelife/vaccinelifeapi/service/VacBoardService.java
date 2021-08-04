@@ -109,6 +109,7 @@ public class VacBoardService {
 
     @Transactional
     public Page<VacBoard> getSimpleVacBoard(Pageable pageable) {
+
         return vacBoardRepository.findAll(pageable);
     }
 }
