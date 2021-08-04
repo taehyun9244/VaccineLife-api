@@ -23,7 +23,6 @@ import java.util.Map;
 
 public class VacBoardController {
     private final VacBoardService vacBoardService;
-
     private final VisitorService visitorService;
 
     //    전체 게시판 조회

@@ -21,11 +21,11 @@ public class VacBoardLikeController {
     private final VacBoardLikeService vacBoardLikeService;
     private final VacBoardLikeRepository vacBoardLikeRepository;
 
-    @PostMapping("/api/like")
+    @PostMapping("/api/vacBoard/like")
     public ResponseDto Like(@RequestBody LikeRequestDto likeRequestDto) {
         return vacBoardLikeService.Like(likeRequestDto);
     }
-    @GetMapping("/api/like/{userId}")
+    @GetMapping("/api/vacBoard/like/{userId}")
     public ResponseEntity<List<LikeRequestDto>> Like(@PathVariable Long userId) {
         return ResponseEntity.ok().body(vacBoardLikeService.getLike(userId));
     }
