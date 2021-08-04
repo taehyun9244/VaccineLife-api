@@ -28,8 +28,8 @@ public class VacBoardController {
 
     //    전체 게시판 조회
     @GetMapping("")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBorad(){
-        return ResponseEntity.ok().body(vacBoardService.getSimpleVacBorad());
+    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(){
+        return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
 
     @GetMapping("api/vacBoard/visitors")
@@ -67,17 +67,19 @@ public class VacBoardController {
 
     //페이지 구현
 
-    @GetMapping("/api/vacBaord/page")
+    @GetMapping("/api/vacBoard/page")
     public Page<VacBoard> readVacBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,
+            @RequestParam("type") String type,
+            @RequestParam("age") String age,
             @RequestParam("sortBy") String sortBy,
             @RequestParam("isAsc") boolean isAsc
 
     ) {
 
         page = page - 1;
-        return vacBoardService.readVacBoard(page , size, sortBy, isAsc);
+        return vacBoardService.readVacBoard(page , size, type, age, sortBy, isAsc);
     }
 }
 
