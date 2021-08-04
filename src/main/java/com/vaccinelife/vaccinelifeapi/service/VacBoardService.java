@@ -47,7 +47,7 @@ public class VacBoardService {
 
     @Transactional
     public List<VacBoardSimRequestDto> getTopList(){
-        List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDesc();
+        List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
         return VacBoardSimRequestDto.list(vacBoards);
     }
 
@@ -99,12 +99,16 @@ public class VacBoardService {
     }
 
 
-    public Page<VacBoard> readVacBoard(int page, int size, String type, String age, String sortBy, boolean isAsc) {
-        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
+//    public Page<VacBoard> readVacBoard(int page, int size, String type, String age, String sortBy, boolean isAsc) {
+//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+//        Sort sort = Sort.by(direction, sortBy);
+//        Pageable pageable = PageRequest.of(page, size, sort);
+//
+//        return vacBoardRepository.findAll(pageable);
+//    }
 
+    @Transactional
+    public Page<VacBoard> getSimpleVacBoard(Pageable pageable) {
         return vacBoardRepository.findAll(pageable);
     }
-
 }

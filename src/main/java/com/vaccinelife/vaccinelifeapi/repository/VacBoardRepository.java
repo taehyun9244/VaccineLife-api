@@ -12,7 +12,7 @@ import java.util.List;
 public interface VacBoardRepository extends JpaRepository<VacBoard, Long> {
     List<VacBoard> findAllByOrderByCreatedAtDesc();
 
-    List<VacBoard> findTop3ByOrderByLikeCountDesc();
+    List<VacBoard> findTop3ByOrderByLikeCountDescCreatedAtDesc();
 
     Page<VacBoard> findAll(Pageable pageable);
 }

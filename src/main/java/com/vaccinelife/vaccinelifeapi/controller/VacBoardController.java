@@ -9,7 +9,11 @@ import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import com.vaccinelife.vaccinelifeapi.service.VisitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -26,7 +30,8 @@ public class VacBoardController {
 
     //    전체 게시판 조회
     @GetMapping("")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(){
+    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        model.addAttribute("getSimpleVacBoard", vacBoardService.getSimpleVacBoard(pageable));
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
 
@@ -71,19 +76,21 @@ public class VacBoardController {
 
     //페이지 구현
 
-    @GetMapping("/api/vacBoard/page")
-    public Page<VacBoard> readVacBoard(
-            @RequestParam("page") int page,
-            @RequestParam("size") int size,
-            @RequestParam("type") String type,
-            @RequestParam("age") String age,
-            @RequestParam("sortBy") String sortBy,
-            @RequestParam("isAsc") boolean isAsc
+//    @GetMapping("/api/vacBoard/page")
+//    public Page<VacBoard> readVacBoard(
+//            @RequestParam("page") int page,
+//            @RequestParam("size") int size,
+//            @RequestParam("type") String type,
+//            @RequestParam("age") String age,
+//            @RequestParam("sortBy") String sortBy,
+//            @RequestParam("isAsc") boolean isAsc
+//
+//    ) {
+//
+//        page = page - 1;
+//        return vacBoardService.readVacBoard(page , size, type, age, sortBy, isAsc);
+//    }
 
-    ) {
 
-        page = page - 1;
-        return vacBoardService.readVacBoard(page , size, type, age, sortBy, isAsc);
-    }
 }
 
