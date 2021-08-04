@@ -30,6 +30,7 @@ public class VacBoardService {
     private final UserRepository userRepository;
     private final IpRepository ipRepository;
 
+
     @Transactional
     public VacBoardRequestDto getDetailVacBoard(Long vacBoardId){
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
@@ -40,9 +41,17 @@ public class VacBoardService {
     }
     @Transactional
     public List<VacBoardSimRequestDto> getSimpleVacBoard(){
-        List<VacBoard> vacBoards = vacBoardRepository.findAllByOrderByModifiedAtDesc();
+        List<VacBoard> vacBoards = vacBoardRepository.findAllByOrderByCreatedAtDesc();
         return VacBoardSimRequestDto.list(vacBoards);
     }
+
+    @Transactional
+    public List<VacBoardSimRequestDto> getTopList(){
+        List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDesc();
+        return VacBoardSimRequestDto.list(vacBoards);
+    }
+
+
 
     @Transactional
     public void createVacBoard(VacBoardPostRequestDto requestDto){

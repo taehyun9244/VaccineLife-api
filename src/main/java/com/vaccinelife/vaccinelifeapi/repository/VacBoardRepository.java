@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface VacBoardRepository extends JpaRepository<VacBoard, Long> {
-    List<VacBoard> findAllByOrderByModifiedAtDesc();
+    List<VacBoard> findAllByOrderByCreatedAtDesc();
+
+    List<VacBoard> findTop3ByOrderByLikeCountDesc();
+
     Page<VacBoard> findAll(Pageable pageable);
 }

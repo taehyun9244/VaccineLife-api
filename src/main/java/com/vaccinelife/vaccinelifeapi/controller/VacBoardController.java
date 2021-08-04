@@ -5,7 +5,6 @@ import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
-import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import com.vaccinelife.vaccinelifeapi.service.VisitorService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +29,12 @@ public class VacBoardController {
     public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(){
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
+
+    @GetMapping("/topLike")
+    public ResponseEntity<List<VacBoardSimRequestDto>> getTopList(){
+        return ResponseEntity.ok().body(vacBoardService.getTopList());
+    }
+
 
     @GetMapping("api/vacBoard/visitors")
     public Map<String, Object> getVacBoard() {
