@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -46,6 +47,12 @@ public class VacBoardLikeService {
             vacBoard.updateLikeNum(+1);
             return new ResponseDto(true, "Basic 게시글 좋아요 추가", 200);
         }
+    }
+
+    public List<LikeRequestDto> getLike(Long id) {
+        List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
+
+        return LikeRequestDto.list(vacBoardLike);
     }
 
 }

@@ -20,4 +20,6 @@ public interface VacBoardLikeRepository extends JpaRepository<VacBoardLike, Long
     List<VacBoardLike> findByUser(VacBoardLike user);
 
     List<VacBoardLike> findVacBoardLikeByUser(VacBoardLike user);
+
+    List<VacBoardLike> findAllByUserId(Long id);
 }

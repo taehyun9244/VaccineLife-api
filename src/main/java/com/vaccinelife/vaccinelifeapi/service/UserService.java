@@ -44,9 +44,6 @@ public class UserService {
         String disease=requestDto.getDisease();
         String afterEffect=requestDto.getAfterEffect();
 
-
-
-
         Optional<User> found = userRepository.findByUsername(username);
         if (username.equals("") || password.equals("") || passwordChecker.equals("")|| nickname.equals("")) {
             throw new IllegalArgumentException("username || password || passwordChecker가 비어있습니다.");

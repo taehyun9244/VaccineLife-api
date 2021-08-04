@@ -67,9 +67,12 @@ public class User extends Timestamped{
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnoreProperties({"vacBoard"})
     private Set<VacBoard> vacBoard = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<VacBoardLike> vacBoardLike = new HashSet<>();
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)

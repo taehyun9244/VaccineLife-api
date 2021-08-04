@@ -8,6 +8,7 @@ import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardLikeRepository;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardLikeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +25,9 @@ public class VacBoardLikeController {
     public ResponseDto Like(@RequestBody LikeRequestDto likeRequestDto) {
         return vacBoardLikeService.Like(likeRequestDto);
     }
-    @GetMapping("/api/like/{user}")
-    public List<VacBoardLike> Like(@PathVariable VacBoardLike user) {
-        return vacBoardLikeRepository.findVacBoardLikeByUser(user);
+    @GetMapping("/api/like/{userId}")
+    public ResponseEntity<List<LikeRequestDto>> Like(@PathVariable Long userId) {
+        return ResponseEntity.ok().body(vacBoardLikeService.getLike(userId));
     }
 
 }
