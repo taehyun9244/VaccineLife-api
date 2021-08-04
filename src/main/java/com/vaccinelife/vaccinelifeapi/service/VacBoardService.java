@@ -1,6 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequsetDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.Ip;
@@ -10,6 +10,10 @@ import com.vaccinelife.vaccinelifeapi.repository.IpRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -41,7 +45,7 @@ public class VacBoardService {
     }
 
     @Transactional
-    public void createVacBoard(VacBoardPostRequsetDto requestDto){
+    public void createVacBoard(VacBoardPostRequestDto requestDto){
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
@@ -68,21 +72,30 @@ public class VacBoardService {
         );
         vacBoardRepository.deleteById(vacBoardId);
     }
-//
-//    @Transactional
-//    public Ip IpChecker() {
-//        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-//        String visitorIp = req.getHeader("X-FORWARDED-FOR");
-//        if (visitorIp == null)
-//            visitorIp = req.getRemoteAddr();
-//        Ip ip = new Ip(visitorIp);
-//        List<Ip> IpList = ipRepository.findAll();
-//        if (IpList.contains(ip)) {
-//            ipRepository.save(ip);
-//            return ip;
-//        }else{
-//            return ip;
-//        }
-//    }
+
+    @Transactional
+    public Ip IpChecker() {
+        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String visitorIp = req.getHeader("X-FORWARDED-FOR");
+        if (visitorIp == null)
+            visitorIp = req.getRemoteAddr();
+        Ip ip = new Ip(visitorIp);
+        List<Ip> IpList = ipRepository.findAll();
+        if (IpList.contains(ip)) {
+            ipRepository.save(ip);
+            return ip;
+        }else{
+            return ip;
+        }
+    }
+
+
+    public Page<VacBoard> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return vacBoardRepository.findAll(pageable);
+    }
 
 }

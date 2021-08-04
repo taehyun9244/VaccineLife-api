@@ -74,4 +74,5 @@ public class VacBoard extends Timestamped {
     }
 
 
+
 }

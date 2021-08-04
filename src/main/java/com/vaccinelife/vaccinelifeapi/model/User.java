@@ -69,14 +69,12 @@ public class User extends Timestamped{
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
     private Set<VacBoard> vacBoard = new HashSet<>();
-    public void add(VacBoard vacBoard){
-        vacBoard.setUser(this);
-        this.vacBoard.add(vacBoard);
-    }
+
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
+
 
 
     public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, String age, String disease, String afterEffect) {

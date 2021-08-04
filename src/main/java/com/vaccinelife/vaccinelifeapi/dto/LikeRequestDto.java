@@ -8,4 +8,6 @@ public class LikeRequestDto {
     private Long vacBoardId;
     private Long userId;
 
+
+
 }

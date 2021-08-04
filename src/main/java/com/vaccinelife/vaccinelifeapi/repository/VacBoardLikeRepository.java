@@ -17,6 +17,7 @@ public interface VacBoardLikeRepository extends JpaRepository<VacBoardLike, Long
     void deleteByVacBoardAndUser(VacBoard vacBoard, User user);
 
     @EntityGraph(attributePaths = ("vacBoard"))
-    List<VacBoardLike> findByUser(User user);
+    List<VacBoardLike> findByUser(VacBoardLike user);
 
+    List<VacBoardLike> findVacBoardLikeByUser(VacBoardLike user);
 }

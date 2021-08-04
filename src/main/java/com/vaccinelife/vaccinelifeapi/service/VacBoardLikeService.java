@@ -39,7 +39,7 @@ public class VacBoardLikeService {
         if (isExist) {
             vacBoardLikeRepository.deleteByVacBoardAndUser(vacBoard, user);
             vacBoard.updateLikeNum(-1);
-            return new ResponseDto(true, "Basic 게시글 좋아요 취소", 200);
+            return new ResponseDto(false, "Basic 게시글 좋아요 취소", 200);
         } else {
             VacBoardLike vacBoardLike = new VacBoardLike(vacBoard, user);
             vacBoardLikeRepository.save(vacBoardLike);

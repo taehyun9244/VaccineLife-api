@@ -1,7 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.MedicalRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequsetDto;
 import com.vaccinelife.vaccinelifeapi.model.Medical;
 import com.vaccinelife.vaccinelifeapi.repository.MedicalRepository;
 import com.vaccinelife.vaccinelifeapi.service.MedicalService;
@@ -21,7 +20,7 @@ public class MedicalController {
     private final MedicalService medicalService;
     private final MedicalRepository medicalRepository;
 
-    //    의료진 한마지 조회
+    //    의료진 한마디 조회
     @GetMapping("/api/medical")
     public ResponseEntity<List<Medical>> getMedicalRequestDto() {
         return ResponseEntity.ok().body(medicalService.getMedicalRequestDto());
