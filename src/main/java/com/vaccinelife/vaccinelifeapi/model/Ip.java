@@ -16,6 +16,9 @@ public class Ip {
     @Column(nullable = false)
     private String Ip;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private VacBoard vacBoard;
+
     public Ip(String hits){
         this.Ip += hits;
     }
