@@ -26,12 +26,13 @@ import java.util.Map;
 
 public class VacBoardController {
     private final VacBoardService vacBoardService;
-    private final VisitorService visitorService;
+
 
     //    전체 게시판 조회
     @GetMapping("")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(Model model, @PageableDefault(size = 10,page = 10,sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
-        model.addAttribute("getSimpleVacBoard", vacBoardService.getSimpleVacBoard(pageable));
+    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard() {
+//            Model model, @PageableDefault(size = 10,page = 10,sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+//        model.addAttribute("getSimpleVacBoard", vacBoardService.getSimpleVacBoard(pageable));
 
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
@@ -42,10 +43,6 @@ public class VacBoardController {
     }
 
 
-    @GetMapping("api/vacBoard/visitors/{vacBoardId}")
-    public Map<String, Object> getVacBoard() {
-        return visitorService.visitorCounter();
-    }
 
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
@@ -77,20 +74,18 @@ public class VacBoardController {
 
     //페이지 구현
 
-//    @GetMapping("/api/vacBoard/page")
-//    public Page<VacBoard> readVacBoard(
-//            @RequestParam("page") int page,
-//            @RequestParam("size") int size,
-//            @RequestParam("type") String type,
-//            @RequestParam("age") String age,
-//            @RequestParam("sortBy") String sortBy,
-//            @RequestParam("isAsc") boolean isAsc
-//
-//    ) {
-//
-//        page = page - 1;
-//        return vacBoardService.readVacBoard(page , size, type, age, sortBy, isAsc);
-//    }
+    @GetMapping("/api/vacBoard/page")
+    public Page<VacBoard> readVacBoard(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc
+
+    ) {
+
+        page = page - 1;
+        return vacBoardService.readVacBoard(page , size, sortBy, isAsc);
+    }
 
 
 }

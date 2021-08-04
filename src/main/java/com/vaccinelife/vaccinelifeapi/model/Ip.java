@@ -19,7 +19,7 @@ public class Ip {
     @ManyToOne(fetch = FetchType.EAGER)
     private VacBoard vacBoard;
 
-    public Ip(String hits){
-        this.Ip += hits;
+    public Ip(String Ip){
+        this.Ip += Ip;
     }
 }

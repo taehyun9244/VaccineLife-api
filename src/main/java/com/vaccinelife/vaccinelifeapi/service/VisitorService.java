@@ -24,6 +24,7 @@ public class VisitorService {
         visitors.put("totalVisitors", totalVisitors);
         visitors.put("todayVisitors", IpList.size());
 
+
         return visitors;
     }
 }

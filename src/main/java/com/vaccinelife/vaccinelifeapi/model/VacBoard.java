@@ -30,7 +30,7 @@ public class VacBoard extends Timestamped {
     private String contents;
 
     @Column(nullable = false)
-    private int hits;
+    private int totalVisitors;
 
     @Column(nullable = false)
     private int commentCount;
@@ -73,10 +73,5 @@ public class VacBoard extends Timestamped {
 
     @OneToMany(mappedBy = "vacBoard", cascade = {CascadeType.REMOVE})
     private Map<String, Ip> ip = new HashMap<>();
-    public void updateHits(int count) {
-        this.hits += count;
-    }
-
-
 
 }
