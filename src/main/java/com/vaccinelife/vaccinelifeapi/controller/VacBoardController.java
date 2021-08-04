@@ -73,7 +73,7 @@ public class VacBoardController {
 
     //페이지 구현
 
-    @GetMapping("/api/vacBoard/page")
+    @GetMapping("/page")
     public Page<VacBoard> readVacBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,
