@@ -6,7 +6,6 @@ import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
-import com.vaccinelife.vaccinelifeapi.service.VisitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,7 +46,7 @@ public class VacBoardController {
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
     public ResponseEntity<VacBoardRequestDto> getDetailVacBoard(@PathVariable Long vacBoardId) {
-        vacBoardService.IpChecker(); // 방문자 체크 로직
+        vacBoardService.IpChecker(vacBoardId); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
     }
 

@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
@@ -83,19 +84,25 @@ public class VacBoardService {
     }
 
     @Transactional
-    public Ip IpChecker() {
+    public Ip IpChecker(Long id) {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String visitorIp = req.getHeader("X-FORWARDED-FOR");
         if (visitorIp == null)
             visitorIp = req.getRemoteAddr();
-        Ip ip = new Ip(visitorIp);
-        List<Ip> IpList = ipRepository.findAll();
-        if (IpList.contains(ip)) {
+        VacBoard vacBoard = vacBoardRepository.findById(id).orElseThrow(
+                ()-> new IllegalArgumentException("게시물 오류")
+        );
+        Ip ip = new Ip(visitorIp, vacBoard);
+
+//        List<Ip> IpList = ipRepository.findAll();
+        boolean isExist = ipRepository.existsByVacBoardAndIp(vacBoard, visitorIp);
+        if (!isExist) {
             ipRepository.save(ip);
-            return ip;
-        }else{
-            return ip;
+            vacBoard.updateHits(+1);
+        }else {
+            vacBoard.updateHits(+0);
         }
+        return ip;
     }
 
 

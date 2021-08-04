@@ -72,6 +72,8 @@ public class VacBoard extends Timestamped {
     }
 
     @OneToMany(mappedBy = "vacBoard", cascade = {CascadeType.REMOVE})
-    private Map<String, Ip> ip = new HashMap<>();
-
+    private List<Ip> ip = new ArrayList<>();
+    public void updateHits(int count){
+        this.totalVisitors += count;
+    }
 }

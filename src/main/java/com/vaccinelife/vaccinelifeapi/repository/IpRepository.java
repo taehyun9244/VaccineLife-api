@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IpRepository extends JpaRepository<Ip, Long> {
 
-
-    List<Ip> findAllByOrderByTotalVisitorsDesc();
+    boolean existsByVacBoardAndIp(VacBoard vacBoard, String Ip);
+//    List<Ip> findAllByOrderByIdDesc();
 }

@@ -11,15 +11,17 @@ import javax.persistence.*;
 public class Ip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long totalVisitors;
+    private Long id;
 
     @Column(nullable = false)
-    private String Ip;
+    private String ip;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private VacBoard vacBoard;
 
-    public Ip(String Ip){
-        this.Ip += Ip;
+    public Ip(String ip,VacBoard vacBoard){
+        this.ip = ip;
+        this.vacBoard = vacBoard;
     }
+
 }
