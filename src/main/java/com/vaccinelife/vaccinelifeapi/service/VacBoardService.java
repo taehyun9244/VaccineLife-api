@@ -39,7 +39,7 @@ public class VacBoardService {
         return VacBoardRequestDto.of(vacBoard);
     }
     @Transactional
-    public List<VacBoardSimRequestDto> getSimpleVacBorad(){
+    public List<VacBoardSimRequestDto> getSimpleVacBoard(){
         List<VacBoard> vacBoards = vacBoardRepository.findAllByOrderByModifiedAtDesc();
         return VacBoardSimRequestDto.list(vacBoards);
     }
@@ -90,7 +90,7 @@ public class VacBoardService {
     }
 
 
-    public Page<VacBoard> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
+    public Page<VacBoard> readVacBoard(int page, int size, String type, String age, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
