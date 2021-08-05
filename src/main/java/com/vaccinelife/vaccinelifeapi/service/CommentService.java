@@ -43,8 +43,8 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<CommentRequestDto> getComment(Long vacBoardId) {
-        List<Comment> comments = commentRepository.findAllById(vacBoardId);
-        return CommentRequestDto.list(comments);
+        List<Comment> comment = commentRepository.findByVacBoardId(vacBoardId);
+        return CommentRequestDto.list(comment);
     }
 
     @Transactional

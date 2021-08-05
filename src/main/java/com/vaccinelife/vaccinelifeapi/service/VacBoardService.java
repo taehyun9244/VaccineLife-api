@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
@@ -37,7 +38,6 @@ public class VacBoardService {
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
                 ()-> new IllegalArgumentException("userError")
         );
-
         return VacBoardRequestDto.of(vacBoard);
     }
     @Transactional

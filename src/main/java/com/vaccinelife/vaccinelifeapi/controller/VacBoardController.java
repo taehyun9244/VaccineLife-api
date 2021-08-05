@@ -1,10 +1,12 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 
+import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
+import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +27,7 @@ import java.util.Map;
 
 public class VacBoardController {
     private final VacBoardService vacBoardService;
-
+    private final CommentService commentService;
 
     //    전체 게시판 조회
     @GetMapping("")
@@ -48,6 +50,11 @@ public class VacBoardController {
     public ResponseEntity<VacBoardRequestDto> getDetailVacBoard(@PathVariable Long vacBoardId) {
         vacBoardService.IpChecker(vacBoardId); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
+    }
+    @GetMapping("/{vacBoardId}/comments")
+    public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vacBoardId) {
+        commentService.getComment(vacBoardId);
+        return  ResponseEntity.ok().body(commentService.getComment(vacBoardId));
     }
 
     //    게시글 작성
