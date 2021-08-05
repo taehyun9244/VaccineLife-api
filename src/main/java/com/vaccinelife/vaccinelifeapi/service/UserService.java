@@ -45,6 +45,7 @@ public class UserService {
         String afterEffect=requestDto.getAfterEffect();
 
         Optional<User> found = userRepository.findByUsername(username);
+        Optional<User> nicknameFound = userRepository.findByNickname(nickname);
         if (username.equals("") || password.equals("") || passwordChecker.equals("")|| nickname.equals("")) {
             throw new IllegalArgumentException("username || password || passwordChecker가 비어있습니다.");
         } else if (password.length() < 8) {
@@ -53,7 +54,7 @@ public class UserService {
             throw new IllegalArgumentException("password와 passwordChecker가 다릅니다.");
         } else if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
-        }else if (found.isPresent()) {
+        }else if (nicknameFound.isPresent()) {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
         password = passwordEncoder.encode(requestDto.getPassword());
