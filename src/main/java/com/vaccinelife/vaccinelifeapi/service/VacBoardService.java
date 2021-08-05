@@ -114,9 +114,5 @@ public class VacBoardService {
         return vacBoardRepository.findAll(pageable);
     }
 
-//    @Transactional
-//    public Page<VacBoard> getSimpleVacBoard(Pageable pageable) {
-//
-//        return vacBoardRepository.findAll(pageable);
-//    }
+
 }
