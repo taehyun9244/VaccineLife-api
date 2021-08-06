@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardTopRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.Ip;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
@@ -38,7 +39,6 @@ public class VacBoardService {
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
                 ()-> new IllegalArgumentException("userError")
         );
-
         return VacBoardRequestDto.of(vacBoard);
     }
 //    전체조회
@@ -50,9 +50,9 @@ public class VacBoardService {
 
 //    탑 3
     @Transactional
-    public List<VacBoardSimRequestDto> getTopList(){
+    public List<VacBoardTopRequestDto> getTopList(){
         List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
-        return VacBoardSimRequestDto.list(vacBoards);
+        return VacBoardTopRequestDto.list(vacBoards);
     }
 
 // 게시물 작성

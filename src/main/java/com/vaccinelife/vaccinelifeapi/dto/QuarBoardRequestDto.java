@@ -22,7 +22,6 @@ public class QuarBoardRequestDto {
     private String title;
     private String contents;
     private int totalVisitors;
-    private int commentCount;
     private int likeCount;
     private Long userId;
     private String username;
@@ -46,7 +45,6 @@ public class QuarBoardRequestDto {
                 .title(quarBoard.getTitle())
                 .contents(quarBoard.getContents())
                 .totalVisitors(quarBoard.getTotalVisitors())
-                .commentCount(quarBoard.getCommentCount())
                 .likeCount(quarBoard.getLikeCount())
                 .userId(quarBoard.getUser().getId())
                 .username(quarBoard.getUser().getUsername())

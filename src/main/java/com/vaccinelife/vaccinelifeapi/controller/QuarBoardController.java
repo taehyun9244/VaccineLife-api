@@ -28,7 +28,7 @@ public class QuarBoardController {
 
 //    탑 3
     @GetMapping("/topLike")
-    public ResponseEntity<List<QuarBoardSimRequestDto>> getTopList(){
+    public ResponseEntity<List<QuarBoardTopRequestDto>> getTopList(){
         return ResponseEntity.ok().body(quarBoardService.getTopList());
     }
 

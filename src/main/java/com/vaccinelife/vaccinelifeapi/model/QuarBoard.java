@@ -32,6 +32,9 @@ public class QuarBoard extends Timestamped{
     private int likeCount;
 
     @Column(nullable = false)
+    private int commentCount;
+
+    @Column(nullable = false)
     private int totalVisitors;
 
 

@@ -28,6 +28,10 @@ public class QuarCommentService {
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 안습니다.")
         );
 
+        List<QuarComment> quarComments = quarCommentRepository.findByQuarBoardId(requestDto.getQuarBoardId());
+        int commentSize = quarComments.size();
+        quarBoard.setCommentCount(commentSize+1);
+
         QuarComment quarComment = QuarComment.builder()
                 .user(user)
                 .quarBoard(quarBoard)

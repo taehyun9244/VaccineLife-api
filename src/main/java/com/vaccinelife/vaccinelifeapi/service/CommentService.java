@@ -31,6 +31,10 @@ public class CommentService {
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 안습니다.")
         );
 
+        List<Comment> commentCount = commentRepository.findByVacBoardId(requestDto.getVacBoardId());
+        int commentSize = commentCount.size();
+        vacBoard.setCommentCount(commentSize+1);
+
         Comment comment = Comment.builder()
                 .user(user)
                 .vacBoard(vacBoard)

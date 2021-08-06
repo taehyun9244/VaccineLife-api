@@ -48,9 +48,9 @@ public class QuarBoardService {
 
 //    탑 3
     @Transactional
-    public List<QuarBoardSimRequestDto> getTopList(){
+    public List<QuarBoardTopRequestDto> getTopList(){
         List<QuarBoard> quarBoards = quarBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
-        return QuarBoardSimRequestDto.list(quarBoards);
+        return QuarBoardTopRequestDto.list(quarBoards);
     }
 
 //    게시물 작성

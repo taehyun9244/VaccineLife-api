@@ -1,10 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 
-import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
@@ -37,7 +34,7 @@ public class VacBoardController {
 //
     //    탑 3
     @GetMapping("/topLike")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getTopList(){
+    public ResponseEntity<List<VacBoardTopRequestDto>> getTopList(){
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
 

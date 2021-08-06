@@ -25,7 +25,6 @@ public class VacBoardRequestDto {
     private String title;
     private String contents;
     private int totalVisitors;
-    private int commentCount;
     private int likeCount;
     private Long userId;
     private String username;
@@ -57,7 +56,6 @@ public class VacBoardRequestDto {
                 .title(vacBoard.getTitle())
                 .contents(vacBoard.getContents())
                 .totalVisitors(vacBoard.getTotalVisitors())
-                .commentCount(vacBoard.getCommentCount())
                 .likeCount(vacBoard.getLikeCount())
                 .userId(vacBoard.getUser().getId())
                 .username(vacBoard.getUser().getUsername())

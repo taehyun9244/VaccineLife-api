@@ -32,6 +32,8 @@ public class VacBoard extends Timestamped {
     @Column(nullable = false)
     private int totalVisitors;
 
+    @Column(nullable = false)
+    private int commentCount;
 
     @Column(nullable = false)
     private int likeCount;
@@ -44,10 +46,7 @@ public class VacBoard extends Timestamped {
     @OneToMany(mappedBy = "vacBoard", fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"vacBoard"})
     private List<Comment> comment;
-    public void add(Comment comment) {
-        comment.setVacBoard(this);
-        this.comment.add(comment);
-    }
+
 
 
 
