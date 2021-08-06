@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 
@@ -46,6 +48,10 @@ public class UserService {
 
         Optional<User> found = userRepository.findByUsername(username);
         Optional<User> nicknameFound = userRepository.findByNickname(nickname);
+
+        Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9]*$");
+        Matcher usernameMatcher = usernamePattern.matcher(username);
+
         if (username.equals("") || password.equals("") || passwordChecker.equals("")|| nickname.equals("")) {
             throw new IllegalArgumentException("username || password || passwordChecker가 비어있습니다.");
         } else if (password.length() < 8) {
@@ -56,7 +62,11 @@ public class UserService {
             throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
         }else if (nicknameFound.isPresent()) {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
+        }else if(!usernameMatcher.find() || username.length()<6 || username.length()>12){
+            throw new IllegalArgumentException("아이디는 영문 조합하여 6~12자로 구성하세요.");
         }
+
+
         password = passwordEncoder.encode(requestDto.getPassword());
         UserRole role = UserRole.USER;
         User user = new User(username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
