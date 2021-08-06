@@ -1,7 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
@@ -33,27 +32,30 @@ public class VacBoardService {
     private final IpRepository ipRepository;
 
 
+//    상세조회
     @Transactional
     public VacBoardRequestDto getDetailVacBoard(Long vacBoardId){
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
                 ()-> new IllegalArgumentException("userError")
         );
+
         return VacBoardRequestDto.of(vacBoard);
     }
+//    전체조회
     @Transactional
     public List<VacBoardSimRequestDto> getSimpleVacBoard(){
         List<VacBoard> vacBoards = vacBoardRepository.findAllByOrderByCreatedAtDesc();
         return VacBoardSimRequestDto.list(vacBoards);
     }
 
+//    탑 3
     @Transactional
     public List<VacBoardSimRequestDto> getTopList(){
         List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
         return VacBoardSimRequestDto.list(vacBoards);
     }
 
-
-
+// 게시물 작성
     @Transactional
     public void createVacBoard(VacBoardPostRequestDto requestDto){
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
@@ -65,7 +67,7 @@ public class VacBoardService {
                 .contents(requestDto.getContents()).build();
         vacBoardRepository.save(vacBoard);
     }
-
+// 게시물 수정
     @Transactional
     public Long update(Long vacBoardId, VacBoardRequestDto requestDto) {
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
@@ -74,7 +76,7 @@ public class VacBoardService {
         vacBoard.update(requestDto);
         return vacBoardId;
     }
-
+// 게시물 삭제
     @Transactional
     public void deleteVacBoard(Long vacBoardId){
         VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
@@ -83,6 +85,7 @@ public class VacBoardService {
         vacBoardRepository.deleteById(vacBoardId);
     }
 
+//    ip로 조회수 체크
     @Transactional
     public Ip IpChecker(Long id) {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();

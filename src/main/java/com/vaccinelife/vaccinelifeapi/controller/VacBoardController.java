@@ -10,16 +10,12 @@ import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -29,21 +25,18 @@ public class VacBoardController {
     private final VacBoardService vacBoardService;
     private final CommentService commentService;
 
+
     //    전체 게시판 조회
     @GetMapping("")
-    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard() {
-//            Model model, @PageableDefault(size = 10,page = 10,sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
-//        model.addAttribute("getSimpleVacBoard", vacBoardService.getSimpleVacBoard(pageable));
-
+    public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard(){
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
-
+//
+    //    탑 3
     @GetMapping("/topLike")
     public ResponseEntity<List<VacBoardSimRequestDto>> getTopList(){
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
-
-
 
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
@@ -51,11 +44,7 @@ public class VacBoardController {
         vacBoardService.IpChecker(vacBoardId); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
     }
-    @GetMapping("/{vacBoardId}/comments")
-    public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vacBoardId) {
-        commentService.getComment(vacBoardId);
-        return  ResponseEntity.ok().body(commentService.getComment(vacBoardId));
-    }
+
 
     //    게시글 작성
     @PostMapping("")
@@ -78,9 +67,16 @@ public class VacBoardController {
         return vacBoardId;
     }
 
+    //    댓글조회
+    @GetMapping("/{vacBoardId}/comments")
+    public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vacBoardId) {
+        commentService.getComment(vacBoardId);
+        return  ResponseEntity.ok().body(commentService.getComment(vacBoardId));
+    }
+
     //페이지 구현
 
-    @GetMapping("/page")
+    @GetMapping("/api/vacBoard/page")
     public Page<VacBoard> readVacBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,

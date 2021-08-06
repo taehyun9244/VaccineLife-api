@@ -3,6 +3,7 @@ package com.vaccinelife.vaccinelifeapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -67,12 +68,30 @@ public class User extends Timestamped{
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"quarcomment"})
+    private List<QuarComment> quarComment = new ArrayList<>();
+    public void add(QuarComment quarComment) {
+        quarComment.setUser(this);
+        this.quarComment.add(quarComment);
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"vacBoard"})
     private Set<VacBoard> vacBoard = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<VacBoardLike> vacBoardLike = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"quarBoard"})
+    private Set<QuarBoard> quarBoard = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<QuarBoardLike> quarBoardLike = new HashSet<>();
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -92,7 +111,6 @@ public class User extends Timestamped{
         this.age= age;
         this.disease= disease;
         this.afterEffect=afterEffect;
-
     }
 
 

@@ -19,9 +19,16 @@ public class Ip {
     @ManyToOne(fetch = FetchType.EAGER)
     private VacBoard vacBoard;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private QuarBoard quarBoard;
+
     public Ip(String ip,VacBoard vacBoard){
         this.ip = ip;
         this.vacBoard = vacBoard;
+    }
+    public Ip(String ip, QuarBoard quarBoard){
+        this.ip = ip;
+        this.quarBoard = quarBoard;
     }
 
 }
