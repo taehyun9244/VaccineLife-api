@@ -69,7 +69,7 @@ public class QuarBoardController {
     }
 
 
-    @GetMapping("/api/QuarBoard/page")
+    @GetMapping("/page")
     public Page<QuarBoard> readQuarBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,

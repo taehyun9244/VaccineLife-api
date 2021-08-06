@@ -38,6 +38,7 @@ public class QuarBoard extends Timestamped{
     private int commentCount;
 
     @JoinColumn(name = "userId")
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
@@ -64,12 +65,14 @@ public class QuarBoard extends Timestamped{
     }
 
     @OneToMany(mappedBy = "quarBoard", cascade = {CascadeType.REMOVE})
+    @JsonIgnore
     private Set<QuarBoardLike> quarBoardLikeList = new HashSet<>();
     public void updateQuarLikeNum(int count) {
         this.likeCount += count;
     }
 
     @OneToMany(mappedBy = "quarBoard", cascade = {CascadeType.REMOVE})
+    @JsonIgnore
     private Set<Ip> ip = new HashSet<>();
     public void updateHits(int count){
         this.totalVisitors += count;

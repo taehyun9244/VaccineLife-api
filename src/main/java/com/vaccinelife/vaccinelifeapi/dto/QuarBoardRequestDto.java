@@ -51,6 +51,8 @@ public class QuarBoardRequestDto {
                 .userId(quarBoard.getUser().getId())
                 .username(quarBoard.getUser().getUsername())
                 .nickname(quarBoard.getUser().getNickname())
+                .createdAt(quarBoard.getCreatedAt())
+                .modifiedAt(quarBoard.getModifiedAt())
                 .build();
     }
 }

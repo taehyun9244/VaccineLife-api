@@ -1,18 +1,22 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
 import com.vaccinelife.vaccinelifeapi.model.QuarBoardLike;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuarBoardLikeRequestDto {
 
     private Long quarBoardId;
     private Long userId;
+
 
     public static QuarBoardLikeRequestDto of(QuarBoardLike quarBoardLike){
         return QuarBoardLikeRequestDto.builder()
