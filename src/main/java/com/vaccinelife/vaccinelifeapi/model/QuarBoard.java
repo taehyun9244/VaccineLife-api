@@ -34,8 +34,6 @@ public class QuarBoard extends Timestamped{
     @Column(nullable = false)
     private int totalVisitors;
 
-    @Column(nullable = false)
-    private int commentCount;
 
     @JoinColumn(name = "userId")
     @JsonIgnore

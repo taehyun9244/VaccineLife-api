@@ -32,8 +32,6 @@ public class VacBoard extends Timestamped {
     @Column(nullable = false)
     private int totalVisitors;
 
-    @Column(nullable = false)
-    private int commentCount;
 
     @Column(nullable = false)
     private int likeCount;

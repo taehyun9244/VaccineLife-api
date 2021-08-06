@@ -17,15 +17,15 @@ public class QuarBoardSimRequestDto {
     private String title;
     private int likeCount;
     private int totalVisitors;
-    private int commentCount;
+
 
     @Builder
-    public QuarBoardSimRequestDto(Long quarBoardId, String title, int likeCount, int totalVisitors, int commentCount) {
+    public QuarBoardSimRequestDto(Long quarBoardId, String title, int likeCount, int totalVisitors) {
         this.quarBoardId = quarBoardId;
         this.title = title;
         this.likeCount = likeCount;
         this.totalVisitors = totalVisitors;
-        this.commentCount = commentCount;
+
     }
     public static QuarBoardSimRequestDto of(QuarBoard quarBoard){
         return QuarBoardSimRequestDto.builder()
@@ -33,7 +33,6 @@ public class QuarBoardSimRequestDto {
                 .title(quarBoard.getTitle())
                 .likeCount(quarBoard.getLikeCount())
                 .totalVisitors(quarBoard.getTotalVisitors())
-                .commentCount(quarBoard.getCommentCount())
                 .build();
     }
     public static List<QuarBoardSimRequestDto> list(List<QuarBoard> boards){

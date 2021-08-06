@@ -15,17 +15,15 @@ public class VacBoardSimRequestDto {
     private String title;
     private int likeCount;
     private int totalVisitors;
-    private int commentCount;
     private String type;
 
 
     @Builder
-    public VacBoardSimRequestDto(Long vacBoardId, String title, int likeCount, int totalVisitors, int commentCount, String type) {
+    public VacBoardSimRequestDto(Long vacBoardId, String title, int likeCount, int totalVisitors,  String type) {
         this.vacBoardId = vacBoardId;
         this.title = title;
         this.likeCount = likeCount;
         this.totalVisitors = totalVisitors;
-        this.commentCount = commentCount;
         this.type = type;
 
     }
@@ -36,7 +34,6 @@ public class VacBoardSimRequestDto {
                 .title(vacBoard.getTitle())
                 .likeCount(vacBoard.getLikeCount())
                 .totalVisitors(vacBoard.getTotalVisitors())
-                .commentCount(vacBoard.getCommentCount())
                 .type(vacBoard.getUser().getType())
                 .build();
     }
