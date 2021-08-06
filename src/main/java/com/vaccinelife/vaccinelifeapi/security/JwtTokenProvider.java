@@ -33,9 +33,10 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userPk, UserRole roles, String nickname, Boolean isVaccine, String type,int degree, String gender, String age, String disease, String afterEffect) {
+    public String createToken(String userPk, Long id,UserRole roles, String nickname, Boolean isVaccine, String type,int degree, String gender, String age, String disease, String afterEffect) {
         Claims claims = Jwts.claims().setSubject(userPk);
         // claim : JWT payload 에 저장되는 정보단위
+        claims.put("id",id);
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장
         claims.put("nickname", nickname);
         claims.put("isVaccine",isVaccine);

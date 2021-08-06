@@ -15,6 +15,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class SignupRequestDto {
 
+    private Long id;
+
     @NotBlank(message = "ID는 필수 입력 값입니다.")
     private String username;
 
@@ -42,12 +44,13 @@ public class SignupRequestDto {
     private String afterEffect;
 
 
-    public SignupRequestDto(String username, String password, String passwordCheck, String nickname,Boolean isVaccine, String type, int degree, String gender, String age, String disease, String afterEffect){
+    public SignupRequestDto(Long id, String username, String password, String passwordCheck, String nickname,Boolean isVaccine, String type, int degree, String gender, String age, String disease, String afterEffect){
 
 
     }
 
     public SignupRequestDto(SignupRequestDto signupRequestDto) {
+        this.id=signupRequestDto.getId();
         this.nickname=signupRequestDto.getNickname();
         this.isVaccine=signupRequestDto.getIsVaccine();
         this.type= signupRequestDto.getType();

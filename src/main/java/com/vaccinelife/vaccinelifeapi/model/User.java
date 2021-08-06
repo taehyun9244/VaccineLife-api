@@ -99,7 +99,8 @@ public class User extends Timestamped{
 
 
 
-    public User(String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, String age, String disease, String afterEffect) {
+    public User(Long id, String username, String password, UserRole role, String nickname, Boolean isVaccine, String type,Integer degree, String gender, String age, String disease, String afterEffect) {
+        this.id=id;
         this.username = username;
         this.password = password;
         this.role = role;

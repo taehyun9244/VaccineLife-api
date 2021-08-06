@@ -16,7 +16,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-
 public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -34,6 +33,7 @@ public class UserService {
 
     @Transactional
     public void registerUser(SignupRequestDto requestDto) {
+        Long id=requestDto.getId();
         String username = requestDto.getUsername();
         String password = requestDto.getPassword();
         String passwordChecker = requestDto.getPasswordChecker();
@@ -69,7 +69,7 @@ public class UserService {
 
         password = passwordEncoder.encode(requestDto.getPassword());
         UserRole role = UserRole.USER;
-        User user = new User(username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
+        User user = new User( id, username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
         userRepository.save(user);
     }
 }
