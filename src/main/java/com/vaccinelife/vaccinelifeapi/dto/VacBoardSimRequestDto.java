@@ -39,7 +39,7 @@ public class VacBoardSimRequestDto {
     }
     
     public static List<VacBoardSimRequestDto> list(List<VacBoard> boards){
-        ArrayList<VacBoardSimRequestDto> VacBoardSimRequestDtos = new ArrayList<>();
+       List<VacBoardSimRequestDto> VacBoardSimRequestDtos = new ArrayList<>();
         for(VacBoard vacBoard : boards){
             VacBoardSimRequestDtos.add(of(vacBoard));
         }

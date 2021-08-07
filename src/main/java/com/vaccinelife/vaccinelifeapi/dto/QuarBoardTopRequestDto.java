@@ -56,7 +56,7 @@ public class QuarBoardTopRequestDto {
                 .build();
     }
     public static List<QuarBoardTopRequestDto> list(List<QuarBoard> boards){
-        ArrayList<QuarBoardTopRequestDto> quarBoardTopRequestDtos = new ArrayList<>();
+        List<QuarBoardTopRequestDto> quarBoardTopRequestDtos = new ArrayList<>();
         for(QuarBoard quarBoard : boards){
             quarBoardTopRequestDtos.add(of(quarBoard));
         }

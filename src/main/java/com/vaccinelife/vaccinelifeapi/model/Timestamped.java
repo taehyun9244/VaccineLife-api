@@ -22,9 +22,10 @@ import java.time.LocalDateTime;
 public abstract class Timestamped {
 
 
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
 //    @JsonSerialize(using = LocalDateTimeSerializer.class)
 //    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
     @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 

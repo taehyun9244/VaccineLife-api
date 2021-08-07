@@ -25,7 +25,7 @@ public class QuarBoardLikeRequestDto {
     }
 
     public static List<QuarBoardLikeRequestDto> list(List<QuarBoardLike> quarBoardLike){
-        ArrayList<QuarBoardLikeRequestDto> quarLikeRequestDtos = new ArrayList<>();
+        List<QuarBoardLikeRequestDto> quarLikeRequestDtos = new ArrayList<>();
         for(QuarBoardLike quarBoardLikes : quarBoardLike){
             quarLikeRequestDtos.add(of(quarBoardLikes));
         }

@@ -59,7 +59,7 @@ public class VacBoardTopRequestDto {
     }
 
     public static List<VacBoardTopRequestDto> list(List<VacBoard> boards){
-        ArrayList<VacBoardTopRequestDto> vacBoardTopRequestDtos = new ArrayList<>();
+        List<VacBoardTopRequestDto> vacBoardTopRequestDtos = new ArrayList<>();
         for(VacBoard vacBoard : boards){
             vacBoardTopRequestDtos.add(of(vacBoard));
         }

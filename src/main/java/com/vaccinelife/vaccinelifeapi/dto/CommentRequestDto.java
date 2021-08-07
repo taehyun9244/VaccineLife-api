@@ -53,7 +53,7 @@ public class CommentRequestDto {
 
     }
     public static List<CommentRequestDto> list(List<Comment> comments){
-        ArrayList<CommentRequestDto> commentRequestDtos = new ArrayList<>();
+        List<CommentRequestDto> commentRequestDtos = new ArrayList<>();
         for(Comment comment : comments){
             commentRequestDtos.add(of(comment));
         }
