@@ -24,7 +24,7 @@ import java.util.List;
 public class QuarBoardTopRequestDto {
     private Long quarBoardId;
     private String title;
-    private String content;
+    private String contents;
     private int likeCount;
     private int totalVisitors;
     private int commentCount;
@@ -41,10 +41,10 @@ public class QuarBoardTopRequestDto {
     private LocalDateTime modifiedAt;
 
     @Builder
-    public QuarBoardTopRequestDto(Long quarBoardId, String title, String content, int likeCount, int totalVisitors, int commentCount, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public QuarBoardTopRequestDto(Long quarBoardId, String title, String contents, int likeCount, int totalVisitors, int commentCount, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.quarBoardId = quarBoardId;
         this.title = title;
-        this.content = content;
+        this.contents = contents;
         this.likeCount = likeCount;
         this.totalVisitors = totalVisitors;
         this.commentCount = commentCount;
@@ -56,7 +56,7 @@ public class QuarBoardTopRequestDto {
         return QuarBoardTopRequestDto.builder()
                 .quarBoardId(quarBoard.getId())
                 .title(quarBoard.getTitle())
-                .content(quarBoard.getContents())
+                .contents(quarBoard.getContents())
                 .likeCount(quarBoard.getLikeCount())
                 .totalVisitors(quarBoard.getTotalVisitors())
                 .commentCount(quarBoard.getCommentCount())
