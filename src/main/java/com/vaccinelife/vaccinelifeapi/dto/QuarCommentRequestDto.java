@@ -25,7 +25,17 @@ public class QuarCommentRequestDto {
     private Long userId;
     private String quarcomment;
     private String nickname;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
 
     public QuarCommentRequestDto(Long id, Long quarBoardId, Long userId, String quarcomment, String nickname, LocalDateTime createdAt, LocalDateTime modifiedAt) {
