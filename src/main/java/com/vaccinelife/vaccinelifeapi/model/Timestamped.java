@@ -21,15 +21,17 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class) // 변경되었을 때 자동으로 기록합니다.
 public abstract class Timestamped {
 
-    @CreatedDate // 최초 생성 시점
+
 //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 
-    @LastModifiedDate // 마지막 변경 시점
+
 //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
 }
