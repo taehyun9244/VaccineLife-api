@@ -23,6 +23,7 @@ public class QuarBoardRequestDto {
     private String contents;
     private int totalVisitors;
     private int likeCount;
+    private int commentCount;
     private Long userId;
     private String username;
     private String nickname;
