@@ -1,11 +1,13 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.*;
+import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.model.QuarBoard;
 import com.vaccinelife.vaccinelifeapi.service.QuarBoardService;
 import com.vaccinelife.vaccinelifeapi.service.QuarCommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -81,4 +83,18 @@ public class QuarBoardController {
         page = page - 1;
         return quarBoardService.readQuarBoard(page , size, sortBy, isAsc);
     }
+
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResponseEntity<Object> handle(IllegalArgumentException ex) {
+        ApiException apiException = new ApiException(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+
+        return new ResponseEntity<>(
+                apiException,
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
 }

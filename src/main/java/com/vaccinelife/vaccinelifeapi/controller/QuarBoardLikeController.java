@@ -2,8 +2,10 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.QuarBoardLikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
+import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.service.QuarBoardLikeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +27,17 @@ public class QuarBoardLikeController {
     @GetMapping("/api/quarBoard/like/{userId}")
     public ResponseEntity<List<QuarBoardLikeRequestDto>> Like(@PathVariable Long userId) {
         return ResponseEntity.ok().body(quarBoardLikeService.getLike(userId));
+    }
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResponseEntity<Object> handle(IllegalArgumentException ex) {
+        ApiException apiException = new ApiException(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+
+        return new ResponseEntity<>(
+                apiException,
+                HttpStatus.BAD_REQUEST
+        );
     }
 }

@@ -2,6 +2,7 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 
 import com.vaccinelife.vaccinelifeapi.dto.*;
+import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +90,18 @@ public class VacBoardController {
         return vacBoardService.readVacBoard(page , size, sortBy, isAsc);
     }
 
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResponseEntity<Object> handle(IllegalArgumentException ex) {
+        ApiException apiException = new ApiException(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+
+        return new ResponseEntity<>(
+                apiException,
+                HttpStatus.BAD_REQUEST
+        );
+    }
 
 }
 

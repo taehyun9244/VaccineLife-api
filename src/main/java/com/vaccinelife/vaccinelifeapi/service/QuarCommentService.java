@@ -48,6 +48,14 @@ public class QuarCommentService {
         QuarComment quarComment = quarCommentRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다.")
         );
+        QuarBoard quarBoard = quarBoardRepository.findById(requestDto.getQuarBoardId()).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시물이 존재하지 않습니다.")
+        );
+
+        List<QuarComment> quarComments = quarCommentRepository.findByQuarBoardId(requestDto.getQuarBoardId());
+        int commentSize = quarComments.size();
+        quarBoard.setCommentCount(commentSize-1);
+
         if(!quarComment.getUser().equals(user)){
             throw new IllegalArgumentException("자신이 쓴 댓글만 삭제 할 수 있습니다.");
         }
