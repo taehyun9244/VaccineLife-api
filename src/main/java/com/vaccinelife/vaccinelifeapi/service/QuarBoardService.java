@@ -109,40 +109,11 @@ public class QuarBoardService {
     }
 
 //    페이지 처리
-public Page<QuarBoard> readQuarBoard(int page, int size, String sortBy, boolean isAsc) {
-    Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-    Sort sort = Sort.by(direction, sortBy);
-    Pageable pageable = PageRequest.of(page, size, sort);
+    public Page<QuarBoard> readQuarBoard(int page, int size, String sortBy, boolean isAsc) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
 
-    return quarBoardRepository.findAll(pageable);
+        return quarBoardRepository.findAll(pageable);
+    }
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    public Page<QuarBoard> readQuarBoard(int page, int size, String type, String age, String sortBy, boolean isAsc) {
-//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-//        Sort sort = Sort.by(direction, sortBy);
-//        Pageable pageable = PageRequest.of(page, size, sort);
-//
-//        return quarRepository.findAll(pageable);
-//    }
-

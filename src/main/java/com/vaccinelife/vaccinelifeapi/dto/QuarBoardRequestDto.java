@@ -27,16 +27,16 @@ public class QuarBoardRequestDto {
     private String username;
     private String nickname;
 
-    @CreatedDate // 최초 생성 시점
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 
-    @LastModifiedDate // 마지막 변경 시점
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
 
     public static QuarBoardRequestDto of(QuarBoard quarBoard){

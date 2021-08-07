@@ -26,7 +26,7 @@ public class LikeRequestDto {
     }
 
     public static List<LikeRequestDto> list(List<VacBoardLike> vacBoardLike){
-        ArrayList<LikeRequestDto> likeRequestDtos = new ArrayList<>();
+      List<LikeRequestDto> likeRequestDtos = new ArrayList<>();
         for(VacBoardLike vacBoardLikes : vacBoardLike){
             likeRequestDtos.add(of(vacBoardLikes));
         }
