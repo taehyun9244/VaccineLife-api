@@ -17,6 +17,5 @@ public class MedicalRequestDto {
     private String contents;
     private String username;
     private Long userId;
-    @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 }

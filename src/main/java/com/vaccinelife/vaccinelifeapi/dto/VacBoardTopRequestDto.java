@@ -26,19 +26,7 @@ public class VacBoardTopRequestDto {
     private int totalVisitors;
     private int commentCount;
     private String type;
-
-
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonSerialize(using = LocalDateTimeSerializer.class)
-//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
-
-
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonSerialize(using = LocalDateTimeSerializer.class)
-//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
 
 
