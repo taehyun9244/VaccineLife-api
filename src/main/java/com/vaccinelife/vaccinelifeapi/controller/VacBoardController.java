@@ -78,7 +78,7 @@ public class VacBoardController {
     //페이지 구현
 
     @GetMapping("/page")
-    public Page<VacBoard> readVacBoard(
+    public Page<VacBoardSimRequestDto> readVacBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sortBy") String sortBy,

@@ -38,6 +38,8 @@ public class VacBoard extends Timestamped {
     @Column(nullable = false)
     private int likeCount;
 
+
+
     @JoinColumn(name = "userId")
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -56,6 +58,7 @@ public class VacBoard extends Timestamped {
         this.title = title;
         this.contents = contents;
         this.user = user;
+
     }
 
     public void update(VacBoardRequestDto requestDto) {

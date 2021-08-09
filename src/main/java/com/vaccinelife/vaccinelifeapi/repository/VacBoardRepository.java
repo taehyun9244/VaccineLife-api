@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.repository;
 
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,5 +14,5 @@ public interface VacBoardRepository extends JpaRepository<VacBoard, Long> {
 
     List<VacBoard> findTop3ByOrderByLikeCountDescCreatedAtDesc();
 
-    Page<VacBoard> findAllByOrderByCreatedAtDesc(Pageable pageable);
+    Page<VacBoardSimRequestDto> findAllByOrderByCreatedAtDesc(Pageable pageable);
 }
