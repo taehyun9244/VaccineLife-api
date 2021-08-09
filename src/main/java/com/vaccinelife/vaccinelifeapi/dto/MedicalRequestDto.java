@@ -19,13 +19,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MedicalRequestDto {
+
     private String contents;
-    private String username;
     private Long userId;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" , timezone = "asia/seoul")
-    @CreatedDate // 최초 생성 시점
-    private LocalDateTime createdAt;
 }

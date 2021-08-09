@@ -93,6 +93,11 @@ public class User extends Timestamped{
     @OneToMany(mappedBy = "user")
     private Set<QuarBoardLike> quarBoardLike = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"medical"})
+    private Set<Medical> medicals = new HashSet<>();
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole role;

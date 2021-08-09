@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface QuarBoardRepository extends JpaRepository<QuarBoard, Long> {
-   List<QuarBoard> findAllByOrderByModifiedAtDesc();
+   List<QuarBoard> findAllByOrderByCreatedAtDesc();
 
    List<QuarBoard> findTop3ByOrderByLikeCountDescCreatedAtDesc();
 

@@ -1,6 +1,9 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.MedicalRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.MedicalResponseDto;
+import com.vaccinelife.vaccinelifeapi.dto.MedicalTop3RequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardTopRequestDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.model.Medical;
 import com.vaccinelife.vaccinelifeapi.repository.MedicalRepository;
@@ -16,21 +19,27 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-
+@RequestMapping("/api/medical")
 public class MedicalController {
 
     private final MedicalService medicalService;
     private final MedicalRepository medicalRepository;
 
     //    의료진 한마디 조회
-    @GetMapping("/api/medical")
-    public ResponseEntity<List<Medical>> getMedicalRequestDto() {
+    @GetMapping("")
+    public ResponseEntity<List<MedicalResponseDto>> getMedicalRequestDto() {
         return ResponseEntity.ok().body(medicalService.getMedicalRequestDto());
+    }
+
+    //TOP3
+    @GetMapping("/toplike")
+    public ResponseEntity<List<MedicalTop3RequestDto>> getTopList(){
+        return ResponseEntity.ok().body(medicalService.getTopList());
     }
 
 
     // 의료진 한마디 작성
-    @PostMapping("/api/medical")
+    @PostMapping("")
     public ResponseEntity<Void> createMedical(@RequestBody MedicalRequestDto requestDto) {
         medicalService.createMedical(requestDto);
         return ResponseEntity.created(URI.create("/api/medical")).build();
@@ -38,11 +47,12 @@ public class MedicalController {
 
 
     //    의료진 한마디 삭제
-    @DeleteMapping("/api/medical/{medicalId}")
+    @DeleteMapping("/{medicalId}")
     public Long deleteMedical(@PathVariable Long medicalId) {
         medicalService.deleteMedical(medicalId);
         return medicalId;
     }
+
 
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {

@@ -42,7 +42,7 @@ public class QuarBoardService {
 //    전체 조회
     @Transactional
     public List<QuarBoardSimRequestDto> getSimpleQuarBoard(){
-        List<QuarBoard> quarBoards = quarBoardRepository.findAllByOrderByModifiedAtDesc();
+        List<QuarBoard> quarBoards = quarBoardRepository.findAllByOrderByCreatedAtDesc();
         return QuarBoardSimRequestDto.list(quarBoards);
     }
 
