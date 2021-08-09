@@ -39,13 +39,13 @@ public class VacBoard extends Timestamped {
     private int likeCount;
 
     @JoinColumn(name = "userId")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vacBoard", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "vacBoard", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"vacBoard"})
-    private List<Comment> comment;
+    private Set<Comment> comment;
 
 
 

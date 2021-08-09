@@ -40,7 +40,7 @@ public class QuarBoard extends Timestamped{
 
     @JoinColumn(name = "userId")
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @JsonIgnore
