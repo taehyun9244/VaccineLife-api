@@ -39,6 +39,7 @@ public class VacBoard extends Timestamped {
     private int likeCount;
 
     @JoinColumn(name = "userId")
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -63,13 +64,15 @@ public class VacBoard extends Timestamped {
     }
 
     @OneToMany(mappedBy = "vacBoard", cascade = {CascadeType.REMOVE})
-    private List<VacBoardLike> vacBoardLikeList = new ArrayList<>();
+    @JsonIgnore
+    private Set<VacBoardLike> vacBoardLikeList = new HashSet<>();
     public void updateLikeNum(int count) {
         this.likeCount += count;
     }
 
     @OneToMany(mappedBy = "vacBoard", cascade = {CascadeType.REMOVE})
-    private List<Ip> ip = new ArrayList<>();
+    @JsonIgnore
+    private Set<Ip> ip = new HashSet<>();
     public void updateHits(int count){
         this.totalVisitors += count;
     }

@@ -16,10 +16,10 @@ public class Ip {
     @Column(nullable = false)
     private String ip;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private VacBoard vacBoard;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private QuarBoard quarBoard;
 
     public Ip(String ip,VacBoard vacBoard){

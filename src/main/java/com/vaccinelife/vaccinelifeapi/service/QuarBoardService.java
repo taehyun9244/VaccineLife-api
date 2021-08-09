@@ -114,6 +114,6 @@ public class QuarBoardService {
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return quarBoardRepository.findAll(pageable);
+        return quarBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 }

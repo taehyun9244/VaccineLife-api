@@ -12,5 +12,5 @@ public interface QuarBoardRepository extends JpaRepository<QuarBoard, Long> {
 
    List<QuarBoard> findTop3ByOrderByLikeCountDescCreatedAtDesc();
 
-   Page<QuarBoard> findAll(Pageable pageable);
+   Page<QuarBoard> findAllByOrderByCreatedAtDesc(Pageable pageable);
 }

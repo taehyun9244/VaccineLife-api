@@ -60,7 +60,7 @@ public class User extends Timestamped{
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"comment"})
-    private List<Comment> comment = new ArrayList<>();
+    private Set<Comment> comment = new HashSet<>();
     public void add(Comment comment) {
         comment.setUser(this);
         this.comment.add(comment);
@@ -69,7 +69,7 @@ public class User extends Timestamped{
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"quarcomment"})
-    private List<QuarComment> quarComment = new ArrayList<>();
+    private Set<QuarComment> quarComment = new HashSet<>();
     public void add(QuarComment quarComment) {
         quarComment.setUser(this);
         this.quarComment.add(quarComment);

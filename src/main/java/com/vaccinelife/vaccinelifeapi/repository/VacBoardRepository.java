@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface VacBoardRepository extends JpaRepository<VacBoard, Long> {
     List<VacBoard> findAllByOrderByCreatedAtDesc();
 
     List<VacBoard> findTop3ByOrderByLikeCountDescCreatedAtDesc();
 
-    Page<VacBoard> findAll(Pageable pageable);
+    Page<VacBoard> findAllByOrderByCreatedAtDesc(Pageable pageable);
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class VacBoardSimRequestDto {
-    private Long vacBoardId;
+    private Long id;
     private String title;
     private int likeCount;
     private int totalVisitors;
@@ -20,8 +20,8 @@ public class VacBoardSimRequestDto {
 
 
     @Builder
-    public VacBoardSimRequestDto(Long vacBoardId, String title, int likeCount, int totalVisitors, int commentCount, String type) {
-        this.vacBoardId = vacBoardId;
+    public VacBoardSimRequestDto(Long id, String title, int likeCount, int totalVisitors, int commentCount, String type) {
+        this.id = id;
         this.title = title;
         this.likeCount = likeCount;
         this.totalVisitors = totalVisitors;
@@ -32,7 +32,7 @@ public class VacBoardSimRequestDto {
     
     public static VacBoardSimRequestDto of(VacBoard vacBoard){
         return VacBoardSimRequestDto.builder()
-                .vacBoardId(vacBoard.getId())
+                .id(vacBoard.getId())
                 .title(vacBoard.getTitle())
                 .likeCount(vacBoard.getLikeCount())
                 .totalVisitors(vacBoard.getTotalVisitors())
