@@ -37,9 +37,10 @@ public class VacBoardRequestDto {
     private String disease;
     private String afterEffect;
 
+
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 
@@ -48,7 +49,6 @@ public class VacBoardRequestDto {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
-
 
 
     public static VacBoardRequestDto of(VacBoard vacBoard) {
@@ -68,6 +68,7 @@ public class VacBoardRequestDto {
                 .age(vacBoard.getUser().getAge())
                 .disease(vacBoard.getUser().getDisease())
                 .afterEffect(vacBoard.getUser().getAfterEffect())
+
                 .createdAt(vacBoard.getCreatedAt())
                 .modifiedAt(vacBoard.getModifiedAt())
                 .build();

@@ -27,16 +27,16 @@ public class VacBoardSimRequestDto {
     private String type;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "asia/seoul" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "asia/seoul")
     @CreatedDate // 최초 생성 시점
     private LocalDateTime createdAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" , timezone = "asia/seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "asia/seoul")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
-@Builder
+    @Builder
     public VacBoardSimRequestDto(Long id, String title, int likeCount, int totalVisitors, int commentCount, String type, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
@@ -48,7 +48,7 @@ public class VacBoardSimRequestDto {
         this.modifiedAt = modifiedAt;
     }
 
-    public static VacBoardSimRequestDto of(VacBoard vacBoard){
+    public static VacBoardSimRequestDto of(VacBoard vacBoard) {
         return VacBoardSimRequestDto.builder()
                 .id(vacBoard.getId())
                 .title(vacBoard.getTitle())
@@ -60,13 +60,13 @@ public class VacBoardSimRequestDto {
                 .modifiedAt(vacBoard.getModifiedAt())
                 .build();
     }
-    
-    public static List<VacBoardSimRequestDto> list(List<VacBoard> boards){
-       List<VacBoardSimRequestDto> VacBoardSimRequestDtos = new ArrayList<>();
-        for(VacBoard vacBoard : boards){
+
+    public static List<VacBoardSimRequestDto> list(List<VacBoard> boards) {
+        List<VacBoardSimRequestDto> VacBoardSimRequestDtos = new ArrayList<>();
+        for (VacBoard vacBoard : boards) {
             VacBoardSimRequestDtos.add(of(vacBoard));
         }
         return VacBoardSimRequestDtos;
     }
-    
+
 }

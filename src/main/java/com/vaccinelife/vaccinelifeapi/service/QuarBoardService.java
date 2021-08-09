@@ -18,6 +18,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -49,7 +52,9 @@ public class QuarBoardService {
 //    탑 3
     @Transactional
     public List<QuarBoardTopRequestDto> getTopList(){
-        List<QuarBoard> quarBoards = quarBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
+        LocalDateTime week = LocalDateTime.of(LocalDate.now().minusDays(7), LocalTime.of(0,0,0));
+        LocalDateTime now = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+        List<QuarBoard> quarBoards = quarBoardRepository.findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(week, now);
         return QuarBoardTopRequestDto.list(quarBoards);
     }
 

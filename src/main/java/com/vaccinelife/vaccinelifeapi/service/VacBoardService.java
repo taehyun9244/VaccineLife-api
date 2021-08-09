@@ -1,6 +1,5 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
@@ -22,6 +21,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -51,7 +53,9 @@ public class VacBoardService {
 //    탑 3
     @Transactional
     public List<VacBoardTopRequestDto> getTopList(){
-        List<VacBoard> vacBoards = vacBoardRepository.findTop3ByOrderByLikeCountDescCreatedAtDesc();
+        LocalDateTime week = LocalDateTime.of(LocalDate.now().minusDays(7), LocalTime.of(0,0,0));
+        LocalDateTime now = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+        List<VacBoard> vacBoards = vacBoardRepository.findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(week, now);
         return VacBoardTopRequestDto.list(vacBoards);
     }
 
@@ -113,7 +117,6 @@ public class VacBoardService {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
-
         return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 

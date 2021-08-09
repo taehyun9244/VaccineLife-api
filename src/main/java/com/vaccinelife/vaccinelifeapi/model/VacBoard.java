@@ -39,7 +39,6 @@ public class VacBoard extends Timestamped {
     private int likeCount;
 
 
-
     @JoinColumn(name = "userId")
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
