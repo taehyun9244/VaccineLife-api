@@ -48,11 +48,11 @@ public class CommentService {
     }
 
     @Transactional
-    public void deleteComment(Long id, CommentDeleteRequestDto requestDto) {
+    public void deleteComment(CommentDeleteRequestDto requestDto) {
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
-        Comment comment = commentRepository.findById(id).orElseThrow(
+        Comment comment = commentRepository.findById(requestDto.getId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다.")
         );
         VacBoard vacBoard = vacBoardRepository.findById(requestDto.getVacBoardId()).orElseThrow(
