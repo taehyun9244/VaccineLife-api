@@ -1,7 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.model.*;
 import com.vaccinelife.vaccinelifeapi.repository.CommentRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
@@ -71,4 +70,3 @@ public class CommentService {
     }
 
 }
-

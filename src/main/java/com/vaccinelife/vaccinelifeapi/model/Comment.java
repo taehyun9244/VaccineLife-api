@@ -30,6 +30,7 @@ public class Comment extends Timestamped{
 
     @Builder
     public Comment(String comment, VacBoard vacBoard, User user) {
+
         this.comment = comment;
         this.vacBoard = vacBoard;
         this.user = user;
