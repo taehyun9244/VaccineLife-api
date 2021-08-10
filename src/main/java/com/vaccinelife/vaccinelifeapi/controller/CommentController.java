@@ -28,8 +28,8 @@ public class CommentController {
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable Long commentId, @RequestBody CommentDeleteRequestDto requestDto) {
-        commentService.deleteComment(commentId, requestDto);
+    public ResponseEntity<Void> deleteComment(@PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
         return ResponseEntity.ok().build();
     }
 
