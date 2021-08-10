@@ -5,6 +5,7 @@ import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@Slf4j
 public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;

@@ -8,6 +8,7 @@ import com.vaccinelife.vaccinelifeapi.repository.IpRepository;
 import com.vaccinelife.vaccinelifeapi.repository.QuarBoardRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class QuarBoardService {
 
     private final QuarBoardRepository quarBoardRepository;

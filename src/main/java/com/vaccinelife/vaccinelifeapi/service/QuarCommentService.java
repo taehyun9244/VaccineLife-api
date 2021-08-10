@@ -6,12 +6,14 @@ import com.vaccinelife.vaccinelifeapi.repository.QuarBoardRepository;
 import com.vaccinelife.vaccinelifeapi.repository.QuarCommentRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class QuarCommentService {
 
     private final UserRepository userRepository;
@@ -41,7 +43,7 @@ public class QuarCommentService {
 
 //    댓글 삭제
     @Transactional
-    public void deleteComment(Long id, QuarCommentRequestDto requestDto) {
+    public void deleteComment(Long id, QuarBoardDeleteRequestDto requestDto) {
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );

@@ -8,17 +8,12 @@ import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController

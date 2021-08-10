@@ -49,9 +49,6 @@ public class VacBoard extends Timestamped {
     @JsonIgnoreProperties({"vacBoard"})
     private Set<Comment> comment;
 
-
-
-
     @Builder
     public VacBoard(String title, String contents, User user) {
         this.title = title;
