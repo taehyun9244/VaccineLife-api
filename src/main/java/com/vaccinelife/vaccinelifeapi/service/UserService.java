@@ -58,6 +58,8 @@ public class UserService {
             throw new IllegalArgumentException("password는 최소 8글자입니다.");
         } else if (!password.equals(passwordChecker)) {
             throw new IllegalArgumentException("password와 passwordChecker가 다릅니다.");
+        }else if (found.isPresent() && nicknameFound.isPresent()) {
+                throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다. " + " 중복된 닉네임이 존재합니다.");
         } else if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
         }else if (nicknameFound.isPresent()) {
