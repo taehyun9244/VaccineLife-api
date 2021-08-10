@@ -61,7 +61,7 @@ public class CommentService {
 
         List<Comment> commentCount = commentRepository.findByVacBoardId(vacBoardId);
         int commentSize = commentCount.size();
-        vacBoard.setCommentCount(commentSize-11);
+        vacBoard.setCommentCount(commentSize-1);
 
         commentRepository.delete(comment);
 
