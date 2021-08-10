@@ -27,9 +27,9 @@ public class CommentController {
         return ResponseEntity.created(URI.create("/api/comment")).build();
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Void> deleteComment(@RequestBody CommentDeleteRequestDto requestDto) {
-        commentService.deleteComment( requestDto);
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long commentId, @RequestBody CommentDeleteRequestDto requestDto) {
+        commentService.deleteComment(commentId, requestDto);
         return ResponseEntity.ok().build();
     }
 

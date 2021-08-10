@@ -12,23 +12,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentPostRequestDto {
-    private Long id;
     private Long vacBoardId;
     private Long userId;
     private String comment;
-
-    @Builder
-    public CommentPostRequestDto(Long id) {
-        this.id=id;
-    }
-
-
-
-    public static CommentPostRequestDto of(Comment comment) {
-        return CommentPostRequestDto.builder()
-                .id(comment.getId())
-                .build();
-    }
-
-
 }

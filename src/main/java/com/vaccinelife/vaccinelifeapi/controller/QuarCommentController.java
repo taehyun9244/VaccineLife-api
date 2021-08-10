@@ -30,9 +30,9 @@ public class QuarCommentController {
     }
 
 //    댓글 삭제
-    @DeleteMapping("")
-    public ResponseEntity<Void> deleteComment(@RequestBody QuarBoardDeleteRequestDto requestDto) {
-        quarCommentService.deleteComment(requestDto);
+    @DeleteMapping("/{quarCommentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long quarCommentId, @RequestBody QuarBoardDeleteRequestDto requestDto) {
+        quarCommentService.deleteComment(quarCommentId, requestDto);
         return ResponseEntity.ok().build();
     }
 
