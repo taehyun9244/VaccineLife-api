@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/medical/like")
+@RequestMapping("/api/medicallike")
 @RequiredArgsConstructor
 public class MedicalLikeController {
     private final MedicalLikeService medicalLikeService;
