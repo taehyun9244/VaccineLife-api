@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
+import com.vaccinelife.vaccinelifeapi.dto.CommentDeleteRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.*;
@@ -47,7 +48,7 @@ public class CommentService {
     }
 
     @Transactional
-    public void deleteComment(Long id, CommentRequestDto requestDto) {
+    public void deleteComment(Long id, CommentDeleteRequestDto requestDto) {
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
@@ -70,11 +71,7 @@ public class CommentService {
         int commentSize1 = commentCount.size();
         vacBoard.setCommentCount(commentSize1-1);
 
-        Comment comment1 = Comment.builder()
-                .user(user)
-                .vacBoard(vacBoard)
-                .comment(requestDto.getComment()).build();
-        commentRepository.delete(comment1);
+        commentRepository.delete(comment);
 
 
     }

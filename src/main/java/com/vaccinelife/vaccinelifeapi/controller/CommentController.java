@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
 
+import com.vaccinelife.vaccinelifeapi.dto.CommentDeleteRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
@@ -27,7 +28,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable(name = "commentId") Long id ,@RequestBody CommentRequestDto requestDto) {
+    public ResponseEntity<Void> deleteComment(@PathVariable(name = "commentId") Long id ,@RequestBody CommentDeleteRequestDto requestDto) {
         commentService.deleteComment(id, requestDto);
         return ResponseEntity.ok().build();
     }
