@@ -43,7 +43,7 @@ public class QuarCommentService {
 
 //    댓글 삭제
     @Transactional
-    public void deleteComment(Long id, QuarCommentRequestDto requestDto) {
+    public void deleteComment(Long id, QuarBoardDeleteRequestDto requestDto) {
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );

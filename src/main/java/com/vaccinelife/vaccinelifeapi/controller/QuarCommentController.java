@@ -2,6 +2,7 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 
 import com.vaccinelife.vaccinelifeapi.dto.CommentRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.QuarBoardDeleteRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.QuarCommentPostRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.QuarCommentRequestDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
@@ -30,7 +31,7 @@ public class QuarCommentController {
 
 //    댓글 삭제
     @DeleteMapping("/{quarcommentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable(name = "quarcommentId") Long id , @RequestBody QuarCommentRequestDto requestDto) {
+    public ResponseEntity<Void> deleteComment(@PathVariable(name = "quarcommentId") Long id , @RequestBody QuarBoardDeleteRequestDto requestDto) {
         quarCommentService.deleteComment(id, requestDto);
         return ResponseEntity.ok().build();
     }
