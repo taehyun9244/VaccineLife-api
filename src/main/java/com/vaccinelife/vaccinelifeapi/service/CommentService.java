@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,6 +21,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final VacBoardRepository vacBoardRepository;
     private final UserRepository userRepository;
+
 
     @Transactional
     public void createComment(CommentPostRequestDto requestDto) {
@@ -48,11 +50,18 @@ public class CommentService {
     }
 
     @Transactional
-    public void deleteComment(Long id) {
+    public void deleteComment( Long vacBoardId,Long id) {
 
         Comment comment = commentRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다.")
         );
+        VacBoard vacBoard = vacBoardRepository.findById(vacBoardId).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        );
+
+        List<Comment> commentCount = commentRepository.findByVacBoardId(vacBoardId);
+        int commentSize = commentCount.size();
+        vacBoard.setCommentCount(commentSize-11);
 
         commentRepository.delete(comment);
 
