@@ -2,6 +2,7 @@ package com.vaccinelife.vaccinelifeapi.repository;
 
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
+import javassist.runtime.Desc;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

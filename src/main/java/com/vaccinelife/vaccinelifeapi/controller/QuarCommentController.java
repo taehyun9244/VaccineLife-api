@@ -36,17 +36,5 @@ public class QuarCommentController {
     }
 
 
-    @ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<Object> handle(IllegalArgumentException ex) {
-        ApiException apiException = new ApiException(
-                ex.getMessage(),
-                HttpStatus.BAD_REQUEST
-        );
-
-        return new ResponseEntity<>(
-                apiException,
-                HttpStatus.BAD_REQUEST
-        );
-    }
 
 }

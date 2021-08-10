@@ -65,7 +65,16 @@ public class CommentService {
         if(!comment.getUser().equals(user)){
             throw new IllegalArgumentException("자신이 쓴 댓글만 삭제 할 수 있습니다.");
         }
-        commentRepository.delete(comment);
+
+        List<Comment> commentCount = commentRepository.findByVacBoardId(requestDto.getVacBoardId());
+        int commentSize1 = commentCount.size();
+        vacBoard.setCommentCount(commentSize1-1);
+
+        Comment comment1 = Comment.builder()
+                .user(user)
+                .vacBoard(vacBoard)
+                .comment(requestDto.getComment()).build();
+        commentRepository.delete(comment1);
 
 
     }

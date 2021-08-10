@@ -1,7 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
 
-import com.vaccinelife.vaccinelifeapi.model.VacBoard;
+
 import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
