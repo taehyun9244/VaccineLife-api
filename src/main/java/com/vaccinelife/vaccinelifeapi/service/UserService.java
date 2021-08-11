@@ -1,10 +1,13 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
+
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
+
 import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
+import com.vaccinelife.vaccinelifeapi.security.UserDetailsImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -61,7 +64,7 @@ public class UserService {
         } else if (!password.equals(passwordChecker)) {
             throw new IllegalArgumentException("password와 passwordChecker가 다릅니다.");
         }else if (found.isPresent() && nicknameFound.isPresent()) {
-                throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다. " + " 중복된 닉네임이 존재합니다.");
+            throw new IllegalArgumentException("중복된 사용자 ID 와 닉네임이 존재합니다.");
         } else if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
         }else if (nicknameFound.isPresent()) {
