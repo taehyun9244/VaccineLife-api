@@ -67,7 +67,7 @@ public class QuarCommentService {
 //    댓글 조회
     @Transactional(readOnly = true)
     public List<QuarCommentRequestDto> getQuarComment(Long quarBoardId) {
-        List<QuarComment> quarComments = quarCommentRepository.findByQuarBoardId(quarBoardId);
+        List<QuarComment> quarComments = quarCommentRepository.findAllByQuarBoardIdOrderByCreatedAtDesc(quarBoardId);
         return QuarCommentRequestDto.list(quarComments);
     }
 }

@@ -45,7 +45,7 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<CommentRequestDto> getComment(Long vacBoardId) {
-        List<Comment> comment = commentRepository.findByVacBoardId(vacBoardId);
+        List<Comment> comment = commentRepository.findAllByVacBoardIdOrderByCreatedAtDesc(vacBoardId);
         return CommentRequestDto.list(comment);
     }
 
