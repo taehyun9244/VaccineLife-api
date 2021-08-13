@@ -1,6 +1,8 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
+import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.security.JwtTokenProvider;
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +28,6 @@ public class UserController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
     private final UserRepository userRepository;
-    private final SignupRequestDto signupRequestDto;
 
 
     @PostMapping("/api/signup")
@@ -44,20 +46,27 @@ public class UserController {
         return jwtTokenProvider.createToken(user.getUsername(), user.getId(), user.getRole(), user.getNickname(), user.getIsVaccine(), user.getType(),user.getDegree(),user.getGender(),user.getAge(),user.getDisease(),user.getAfterEffect());
     }
 
-    @GetMapping("/api/signup/{username}")
-    public void UsernameCheck(@PathVariable String username) {
+    @GetMapping("/api/signup/username")
+    public ResponseDto UsernameCheck( @RequestParam("username") String username) {
 
-        Optional<User> found = userRepository.findByUsername(username);
-        if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자 ID가 존재합니다.");
+    boolean isExist = userRepository.existsByUsername(username);
+
+        if (isExist) {
+        return new ResponseDto(false, "중복된 ID가 존재합니다", 200);
+    } else {
+        return new ResponseDto(true, "사용 가능한 ID 입니다.", 200);
         }
     }
 
-    @GetMapping("/api/signup/{nickname}")
-    public void UserNicknameCheck(@PathVariable String nickname) {
-        Optional<User> found = userRepository.findByNickname(nickname);
-        if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
+    @GetMapping("/api/signup/nickname")
+    public ResponseDto NicknameCheck( @RequestParam("nickname") String nickname) {
+
+        boolean isExist = userRepository.existsByNickname(nickname);
+
+        if (isExist) {
+            return new ResponseDto(false, "중복된 닉네임이 존재합니다", 200);
+        } else {
+            return new ResponseDto(true, "사용 가능한 닉네임 입니다.", 200);
         }
     }
 
