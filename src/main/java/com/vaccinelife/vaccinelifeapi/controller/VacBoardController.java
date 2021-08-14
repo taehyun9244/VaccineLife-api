@@ -28,14 +28,12 @@ public class VacBoardController {
     public ResponseEntity<List<VacBoardSimRequestDto>> getSimpleVacBoard() {
         return ResponseEntity.ok().body(vacBoardService.getSimpleVacBoard());
     }
-//
+
     //    탑 3
     @GetMapping("/topLike")
     public ResponseEntity<List<VacBoardTopRequestDto>> getTopList(){
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
-
-
 
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
