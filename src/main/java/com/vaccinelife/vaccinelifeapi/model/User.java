@@ -4,6 +4,7 @@ package com.vaccinelife.vaccinelifeapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,9 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor
+@Table(uniqueConstraints=
+@UniqueConstraint(columnNames = {"username", "nickname"}))
+@Data
 public class User extends Timestamped{
 
 
@@ -25,13 +29,13 @@ public class User extends Timestamped{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name="username" ,nullable = false)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name="nickname", nullable = false)
     private String nickname;
 
     @Column(nullable = false)
