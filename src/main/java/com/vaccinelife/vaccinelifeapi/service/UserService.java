@@ -56,27 +56,6 @@ public class UserService {
         String disease=requestDto.getDisease();
         String afterEffect=requestDto.getAfterEffect();
 
-        Optional<User> found = userRepository.findByUsername(username);
-        Optional<User> nicknameFound = userRepository.findByNickname(nickname);
-
-        Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9]*$");
-        Matcher usernameMatcher = usernamePattern.matcher(username);
-
-        if (username.equals("") || password.equals("") || passwordChecker.equals("")|| nickname.equals("")) {
-            throw new IllegalArgumentException("username || password || passwordChecker가 비어있습니다.");
-        } else if (password.length() < 8) {
-            throw new IllegalArgumentException("비밀번호는 최소 8글자입니다.");
-        } else if (!password.equals(passwordChecker)) {
-            throw new IllegalArgumentException("password와 passwordChecker가 다릅니다.");
-        }else if (found.isPresent() && nicknameFound.isPresent()) {
-            throw new IllegalArgumentException("중복된 ID와 닉네임이 존재합니다.");
-        } else if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 ID가 존재합니다.");
-        }else if (nicknameFound.isPresent()) {
-            throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
-        }else if(!usernameMatcher.find() || username.length()<6 || username.length()>12){
-            throw new IllegalArgumentException("아이디는 영문 조합하여 6~12자로 구성하세요.");
-        }
 
 
         password = passwordEncoder.encode(requestDto.getPassword());
