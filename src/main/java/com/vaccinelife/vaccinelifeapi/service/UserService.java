@@ -39,6 +39,14 @@ public class UserService {
         this.authenticationManager = authenticationManager;
     }
 
+    @Transactional
+    public Long update(Long id, SignupRequestDto requestDto) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("아이디가 존재하지 않습니다.")
+        );
+        user.update(requestDto);
+        return id;
+    }
 
 
     @Transactional

@@ -125,5 +125,18 @@ public class User extends Timestamped{
     }
 
 
+    public void update(SignupRequestDto requestDto) {
+        this.id=requestDto.getId();
+        this.username=requestDto.getUsername();
+        this.role=UserRole.USER;
+        this.nickname=requestDto.getNickname();
+        this.isVaccine=requestDto.getIsVaccine();
+        this.type=requestDto.getType();
+        this.degree=requestDto.getDegree();
+        this.gender=requestDto.getGender();
+        this.age=requestDto.getAge();
+        this.disease= requestDto.getDisease();
+        this.afterEffect= requestDto.getAfterEffect();
 
+    }
 }

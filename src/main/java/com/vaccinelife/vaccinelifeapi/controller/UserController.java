@@ -70,6 +70,14 @@ public class UserController {
         }
     }
 
+    @PutMapping("api/signup/{id}")
+    public String Userinfo( @PathVariable Long id, @RequestBody SignupRequestDto requestDto) {
+        User user = userRepository.findByUsername(requestDto.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 유저입니다."));
+        userService.update(id, requestDto);
+        return jwtTokenProvider.createToken(user.getUsername(), user.getId(), user.getRole(), user.getNickname(), user.getIsVaccine(), user.getType(),user.getDegree(),user.getGender(),user.getAge(),user.getDisease(),user.getAfterEffect());
+    }
+
 
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
