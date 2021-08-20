@@ -25,7 +25,7 @@ public class MedicalLikeRequestDto {
     public static MedicalLikeRequestDto of(MedicalLike medicalLike) {
         return MedicalLikeRequestDto.builder()
                 .userId(medicalLike.getUser().getId())
-                .medicalId(medicalLike.getId())
+                .medicalId(medicalLike.getMedical().getId())
                 .build();
     }
 

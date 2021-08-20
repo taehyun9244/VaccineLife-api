@@ -42,6 +42,8 @@ public class Medical extends Timestamped {
         this.contents = requestDto.getContents();
     }
 
-
+    public void update(String contents){
+        this.contents = contents;
+    }
 
 }

@@ -54,7 +54,6 @@ public class VacBoard extends Timestamped {
         this.title = title;
         this.contents = contents;
         this.user = user;
-
     }
 
     public void update(VacBoardRequestDto requestDto) {

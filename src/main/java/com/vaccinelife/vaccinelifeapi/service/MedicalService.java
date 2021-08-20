@@ -2,21 +2,31 @@ package com.vaccinelife.vaccinelifeapi.service;
 
 import javax.transaction.Transactional;
 
-import com.vaccinelife.vaccinelifeapi.dto.MedicalRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.MedicalResponseDto;
-import com.vaccinelife.vaccinelifeapi.dto.MedicalTop3RequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.model.Medical;
+import com.vaccinelife.vaccinelifeapi.model.QuarBoard;
 import com.vaccinelife.vaccinelifeapi.model.User;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.repository.MedicalRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -64,6 +74,30 @@ public class MedicalService {
         LocalDateTime now = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
         List<Medical> medicals = medicalRepository.findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(week, now);
         return MedicalTop3RequestDto.list(medicals);
+    }
+
+
+    //내용 수정
+    @Transactional
+    public ResponseEntity<Medical> patch(Long medicalId, Map<Object, Object> fields) {
+        Optional<Medical> medical = medicalRepository.findById(medicalId);
+        if(medical.isPresent()) {
+            fields.forEach((key, value) -> {
+                Field field = ReflectionUtils.findField(Medical.class, (String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, medical.get(), value);
+            });
+            Medical updateVacBoard = medical.get();
+            return new ResponseEntity<>(updateVacBoard, HttpStatus.OK);
+        }
+        return null;
+    }
+
+    public Page<MedicalResponseDto> readMedical(int page, int size, String sortBy, boolean isAsc) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return medicalRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
 

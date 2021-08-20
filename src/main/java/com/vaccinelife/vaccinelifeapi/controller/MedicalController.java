@@ -1,21 +1,20 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
-import com.vaccinelife.vaccinelifeapi.dto.MedicalRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.MedicalResponseDto;
-import com.vaccinelife.vaccinelifeapi.dto.MedicalTop3RequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardTopRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.model.Medical;
 import com.vaccinelife.vaccinelifeapi.repository.MedicalRepository;
 import com.vaccinelife.vaccinelifeapi.service.MedicalService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -53,6 +52,25 @@ public class MedicalController {
         return medicalId;
     }
 
+    //의료진 한마디 내용 수정
+    @PatchMapping("/{medicalId}")
+    public ResponseEntity<Void> patchVacBoard(@PathVariable Long medicalId, @RequestBody Map<Object, Object> fields) {
+        medicalService.patch(medicalId, fields);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/page")
+    public Page<MedicalResponseDto> readMedical(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc
+
+    ) {
+
+        page = page - 1;
+        return medicalService.readMedical(page , size, sortBy, isAsc);
+    }
 
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
