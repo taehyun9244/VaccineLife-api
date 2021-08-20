@@ -19,6 +19,7 @@ public class LikeRequestDto {
     private Long vacBoardId;
     private Long userId;
 
+
     public static LikeRequestDto of(VacBoardLike vacBoardLike){
         return LikeRequestDto.builder()
                 .vacBoardId(vacBoardLike.getVacBoard().getId())

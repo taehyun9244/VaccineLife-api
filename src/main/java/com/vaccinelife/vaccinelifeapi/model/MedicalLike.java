@@ -13,6 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 public class MedicalLike {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

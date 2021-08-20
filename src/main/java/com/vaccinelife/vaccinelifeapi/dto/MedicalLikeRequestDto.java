@@ -16,16 +16,22 @@ import java.util.List;
 public class MedicalLikeRequestDto {
     private Long medicalId;
     private Long userId;
+    private String contents;
+    private int likeCount;
 
-    public MedicalLikeRequestDto(Long medicalId, Long userId) {
+    public MedicalLikeRequestDto(Long medicalId, Long userId,String contents, int likeCount) {
         this.medicalId = medicalId;
         this.userId = userId;
+        this.contents=contents;
+        this.likeCount=likeCount;
     }
 
     public static MedicalLikeRequestDto of(MedicalLike medicalLike) {
         return MedicalLikeRequestDto.builder()
                 .userId(medicalLike.getUser().getId())
                 .medicalId(medicalLike.getMedical().getId())
+                .contents(medicalLike.getMedical().getContents())
+                .likeCount(medicalLike.getMedical().getLikeCount())
                 .build();
     }
 
