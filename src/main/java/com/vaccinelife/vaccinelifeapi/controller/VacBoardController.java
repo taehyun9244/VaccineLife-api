@@ -33,7 +33,8 @@ public class VacBoardController {
     public ResponseEntity<List<VacBoardTopRequestDto>> getTopList(){
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
-//이전글 다음글
+
+    //이전글 다음글
     @GetMapping("/{vacBoardId}/id")
     public ResponseEntity<VacPrevNextDto> getNPId(@PathVariable Long vacBoardId){
         return ResponseEntity.ok().body(vacBoardService.getVacNextPrevId(vacBoardId));
@@ -45,6 +46,7 @@ public class VacBoardController {
         vacBoardService.IpChecker(vacBoardId); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
     }
+    // 상세 게시판 댓글 조회
     @GetMapping("/{vacBoardId}/comments")
     public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vacBoardId) {
         commentService.getComment(vacBoardId);
