@@ -1,6 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
-import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardLikeService;
@@ -19,13 +19,13 @@ public class VacBoardLikeController {
 
     //    좋아요 누르기
     @PostMapping("/api/vacBoard/like")
-    public ResponseDto Like(@RequestBody LikeRequestDto likeRequestDto) {
-        return vacBoardLikeService.Like(likeRequestDto);
+    public ResponseDto Like(@RequestBody VacBoardLikeRequestDto vacBoardLikeRequestDto) {
+        return vacBoardLikeService.Like(vacBoardLikeRequestDto);
     }
 
     //    좋아요 조회
     @GetMapping("/api/vacBoard/like/{userId}")
-    public ResponseEntity<List<LikeRequestDto>> Like(@PathVariable Long userId) {
+    public ResponseEntity<List<VacBoardLikeRequestDto>> Like(@PathVariable Long userId) {
         return ResponseEntity.ok().body(vacBoardLikeService.getLike(userId));
     }
     @ExceptionHandler({IllegalArgumentException.class})

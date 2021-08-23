@@ -1,8 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.controller;
-import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
-import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.security.JwtTokenProvider;
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
@@ -14,11 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController

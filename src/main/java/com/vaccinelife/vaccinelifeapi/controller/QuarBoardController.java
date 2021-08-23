@@ -34,6 +34,11 @@ public class QuarBoardController {
         return ResponseEntity.ok().body(quarBoardService.getTopList());
     }
 
+    //이전글 다음글
+    @GetMapping("/{quarBoardId}/id")
+    public ResponseEntity<QuarPrevNextDto> getQuarNextPrevId(@PathVariable Long quarBoardId){
+        return ResponseEntity.ok().body(quarBoardService.getQuarNextPrevId(quarBoardId));
+    }
 //    상세 게시판 조회
     @GetMapping("/{quarBoardId}")
     public ResponseEntity<QuarBoardRequestDto> getDetailVacBoard(@PathVariable Long quarBoardId) {

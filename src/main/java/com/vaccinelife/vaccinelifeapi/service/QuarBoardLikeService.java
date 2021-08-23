@@ -46,7 +46,6 @@ public class QuarBoardLikeService {
 
     public List<QuarBoardLikeRequestDto> getLike(Long id) {
         List<QuarBoardLike> quarBoardLike = quarBoardLikeRepository.findAllByUserId(id);
-
         return QuarBoardLikeRequestDto.list(quarBoardLike);
     }
 }

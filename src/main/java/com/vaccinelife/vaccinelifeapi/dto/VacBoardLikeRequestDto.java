@@ -15,22 +15,22 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LikeRequestDto {
+public class VacBoardLikeRequestDto {
     private Long vacBoardId;
     private Long userId;
 
 
-    public static LikeRequestDto of(VacBoardLike vacBoardLike){
-        return LikeRequestDto.builder()
+    public static VacBoardLikeRequestDto of(VacBoardLike vacBoardLike){
+        return VacBoardLikeRequestDto.builder()
                 .vacBoardId(vacBoardLike.getVacBoard().getId())
                 .userId(vacBoardLike.getUser().getId()).build();
     }
 
-    public static List<LikeRequestDto> list(List<VacBoardLike> vacBoardLike){
-      List<LikeRequestDto> likeRequestDtos = new ArrayList<>();
+    public static List<VacBoardLikeRequestDto> list(List<VacBoardLike> vacBoardLike){
+      List<VacBoardLikeRequestDto> vacBoardLikeRequestDtos = new ArrayList<>();
         for(VacBoardLike vacBoardLikes : vacBoardLike){
-            likeRequestDtos.add(of(vacBoardLikes));
+            vacBoardLikeRequestDtos.add(of(vacBoardLikes));
         }
-        return likeRequestDtos;
+        return vacBoardLikeRequestDtos;
     }
 }

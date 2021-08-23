@@ -4,6 +4,7 @@ import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.model.Ip;
 import com.vaccinelife.vaccinelifeapi.model.QuarBoard;
 import com.vaccinelife.vaccinelifeapi.model.User;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.repository.IpRepository;
 import com.vaccinelife.vaccinelifeapi.repository.QuarBoardRepository;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
@@ -44,12 +45,25 @@ public class QuarBoardService {
         return QuarBoardRequestDto.of(quarBoard);
     }
 
+    //이전글 다음글
+    @Transactional
+    public QuarPrevNextDto getQuarNextPrevId(Long quarBoardId){
+        QuarBoard prevId = quarBoardRepository.findTopByIdLessThanOrderByCreatedAtDesc(quarBoardId);
+        QuarBoard nextId = quarBoardRepository.findFirstByIdGreaterThan(quarBoardId);
+        return QuarPrevNextDto.builder()
+                .prevId(prevId)
+                .nextId(nextId)
+                .build();
+    }
+
 //    전체 조회
     @Transactional
     public List<QuarBoardSimRequestDto> getSimpleQuarBoard(){
         List<QuarBoard> quarBoards = quarBoardRepository.findAllByOrderByCreatedAtDesc();
         return QuarBoardSimRequestDto.list(quarBoards);
     }
+
+
 
 //    탑 3
     @Transactional
@@ -122,5 +136,12 @@ public class QuarBoardService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return quarBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
+    }
+
+    //마이페이지 내가 쓴글
+    @Transactional
+    public List<QuarBoardSimRequestDto> getMypageQuarBoard(Long userId){
+        List<QuarBoard> quarBoards = quarBoardRepository.findAllByUserIdOrderByCreatedAtDesc(userId);
+        return QuarBoardSimRequestDto.list(quarBoards);
     }
 }

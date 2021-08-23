@@ -46,6 +46,12 @@ public class MedicalService {
         return MedicalResponseDto.list(medicals);
     }
 
+    @Transactional
+    public List<MedicalResponseDto> getMypageMedical(Long userId) {
+        List<Medical> medicals = medicalRepository.findAllByUserIdOrderByCreatedAtDesc(userId);
+        return MedicalResponseDto.list(medicals);
+    }
+
 
     //    의료진 한마디 작성 기능
     @Transactional

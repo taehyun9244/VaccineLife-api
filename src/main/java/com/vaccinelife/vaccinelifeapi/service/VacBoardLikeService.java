@@ -1,6 +1,7 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeMypageDto;
+import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
@@ -25,15 +26,15 @@ public class VacBoardLikeService {
     private final UserRepository userRepository;
 
     @Transactional
-    public ResponseDto Like(LikeRequestDto likeRequestDto) {
-        VacBoard vacBoard = vacBoardRepository.findById(likeRequestDto.getVacBoardId()).orElseThrow(
+    public ResponseDto Like(VacBoardLikeRequestDto vacBoardLikeRequestDto) {
+        VacBoard vacBoard = vacBoardRepository.findById(vacBoardLikeRequestDto.getVacBoardId()).orElseThrow(
                 () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        User user = ((UserDetailsImpl) authentication.getPrincipal()).getUser();
 
 
-        User user = userRepository.findById(likeRequestDto.getUserId()).orElseThrow(
+        User user = userRepository.findById(vacBoardLikeRequestDto.getUserId()).orElseThrow(
                 () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
 
@@ -51,10 +52,16 @@ public class VacBoardLikeService {
         }
     }
 
-    public List<LikeRequestDto> getLike(Long id) {
+    public List<VacBoardLikeRequestDto> getLike(Long id) {
         List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
 
-        return LikeRequestDto.list(vacBoardLike);
+        return VacBoardLikeRequestDto.list(vacBoardLike);
     }
+    //mypage 내가 좋아한 게시물 내려주기
 
+    public List<VacBoardLikeMypageDto> getLikeMypage(Long id) {
+        List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
+
+        return VacBoardLikeMypageDto.list(vacBoardLike);
+    }
 }

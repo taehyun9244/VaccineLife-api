@@ -44,6 +44,7 @@ public class MedicalLikeService {
             return new ResponseDto(true, "Basic 게시글 좋아요 추가", 200);
         }
     }
+
     public List<MedicalLikeRequestDto> getLike(Long id) {
         List<MedicalLike> medicalLike = medicalLikeRepository.findAllByUserId(id);
 

@@ -1,9 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardPostRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardTopRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.model.Ip;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.VacBoard;
@@ -36,6 +33,16 @@ public class VacBoardService {
     private final UserRepository userRepository;
     private final IpRepository ipRepository;
 
+    //이전글 다음글
+    @Transactional
+    public VacPrevNextDto getVacNextPrevId(Long vaBoardId){
+        VacBoard prevId = vacBoardRepository.findTopByIdLessThanOrderByCreatedAtDesc(vaBoardId);
+        VacBoard nextId = vacBoardRepository.findFirstByIdGreaterThan(vaBoardId);
+        return VacPrevNextDto.builder()
+                .prevId(prevId)
+                .nextId(nextId)
+                .build();
+    }
 
 //    상세조회
     @Transactional
@@ -67,11 +74,7 @@ public class VacBoardService {
         User user = userRepository.findById(requestDto.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
-        VacBoard vacBoard = VacBoard.builder()
-                .user(user)
-                .title(requestDto.getTitle())
-                .contents(requestDto.getContents()).build();
-        vacBoardRepository.save(vacBoard);
+        vacBoardRepository.save(requestDto.toEntity(user));
     }
 // 게시물 수정
     @Transactional
@@ -113,7 +116,12 @@ public class VacBoardService {
         }
         return ip;
     }
-
+//mypage vacboard
+    @Transactional
+    public List<VacBoardSimRequestDto> getMypageVacBoard(Long userId){
+        List<VacBoard> vacBoards = vacBoardRepository.findAllByUserIdOrderByCreatedAtDesc(userId);
+        return VacBoardSimRequestDto.list(vacBoards);
+    }
 
     public Page<VacBoardSimRequestDto> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;

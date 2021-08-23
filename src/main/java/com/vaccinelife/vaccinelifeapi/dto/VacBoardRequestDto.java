@@ -68,9 +68,8 @@ public class VacBoardRequestDto {
                 .age(vacBoard.getUser().getAge())
                 .disease(vacBoard.getUser().getDisease())
                 .afterEffect(vacBoard.getUser().getAfterEffect())
-
                 .createdAt(vacBoard.getCreatedAt())
                 .modifiedAt(vacBoard.getModifiedAt())
                 .build();
-    }
+            }
 }

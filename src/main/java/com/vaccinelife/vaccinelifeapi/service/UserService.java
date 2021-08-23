@@ -1,16 +1,11 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
 
-import com.vaccinelife.vaccinelifeapi.dto.LikeRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
 
-import com.vaccinelife.vaccinelifeapi.model.Timestamped;
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
-import com.vaccinelife.vaccinelifeapi.model.VacBoardLike;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
-import com.vaccinelife.vaccinelifeapi.security.UserDetailsImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,9 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 @Service

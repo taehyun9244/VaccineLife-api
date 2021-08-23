@@ -3,7 +3,6 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
-import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,6 +32,11 @@ public class VacBoardController {
     @GetMapping("/topLike")
     public ResponseEntity<List<VacBoardTopRequestDto>> getTopList(){
         return ResponseEntity.ok().body(vacBoardService.getTopList());
+    }
+//이전글 다음글
+    @GetMapping("/{vacBoardId}/id")
+    public ResponseEntity<VacPrevNextDto> getNPId(@PathVariable Long vacBoardId){
+        return ResponseEntity.ok().body(vacBoardService.getVacNextPrevId(vacBoardId));
     }
 
     //    상세 게시판 조회
