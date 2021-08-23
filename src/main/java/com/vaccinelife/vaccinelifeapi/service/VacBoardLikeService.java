@@ -57,9 +57,9 @@ public class VacBoardLikeService {
 
         return VacBoardLikeRequestDto.list(vacBoardLike);
     }
-    //mypage 내가 좋아한 게시물 내려주기
 
-    public List<VacBoardLikeMypageDto> getLikeMypage(Long id) {
+    //mypage 내가 좋아한 게시물 내려주기
+    public List<VacBoardLikeMypageDto> getVacLikeMypage(Long id) {
         List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
 
         return VacBoardLikeMypageDto.list(vacBoardLike);

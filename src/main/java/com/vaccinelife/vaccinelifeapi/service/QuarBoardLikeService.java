@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
+import com.vaccinelife.vaccinelifeapi.dto.QuarBoardLikeMypageDto;
 import com.vaccinelife.vaccinelifeapi.dto.QuarBoardLikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.model.*;
@@ -47,5 +48,11 @@ public class QuarBoardLikeService {
     public List<QuarBoardLikeRequestDto> getLike(Long id) {
         List<QuarBoardLike> quarBoardLike = quarBoardLikeRepository.findAllByUserId(id);
         return QuarBoardLikeRequestDto.list(quarBoardLike);
+    }
+
+    //mypage 내가 좋아한 게시물 내려주기
+    public List<QuarBoardLikeMypageDto> getQuarLikeMypage(Long id) {
+        List<QuarBoardLike> quarBoardLike = quarBoardLikeRepository.findAllByUserId(id);
+        return QuarBoardLikeMypageDto.list(quarBoardLike);
     }
 }

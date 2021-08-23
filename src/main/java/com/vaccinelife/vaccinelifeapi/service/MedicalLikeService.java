@@ -47,7 +47,6 @@ public class MedicalLikeService {
 
     public List<MedicalLikeRequestDto> getLike(Long id) {
         List<MedicalLike> medicalLike = medicalLikeRepository.findAllByUserId(id);
-
         return MedicalLikeRequestDto.list(medicalLike);
     }
 

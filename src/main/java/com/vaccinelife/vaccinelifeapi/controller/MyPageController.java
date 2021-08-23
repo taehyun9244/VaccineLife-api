@@ -1,9 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.controller;
 
-import com.vaccinelife.vaccinelifeapi.dto.MedicalResponseDto;
-import com.vaccinelife.vaccinelifeapi.dto.QuarBoardSimRequestDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeMypageDto;
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardSimRequestDto;
+import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
 import com.vaccinelife.vaccinelifeapi.service.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +18,9 @@ public class MyPageController {
     private final VacBoardService vacBoardService;
     private final VacBoardLikeService vacBoardLikeService;
     private final QuarBoardService quarBoardService;
+    private final QuarBoardLikeService quarBoardLikeService;
     private final MedicalService medicalService;
+    private final MedicalLikeService medicalLikeService;
 
     //백신 후기 List 받기
     @GetMapping("/{userId}/vacBoard")
@@ -44,12 +43,18 @@ public class MyPageController {
     //좋아요 누른 백신 후기 List받기
     @GetMapping("/{userId}/vacBoard/like")
     public ResponseEntity<List<VacBoardLikeMypageDto>> getLikeMypage(@PathVariable Long userId){
-        return ResponseEntity.ok().body(vacBoardLikeService.getLikeMypage(userId));
+        return ResponseEntity.ok().body(vacBoardLikeService.getVacLikeMypage(userId));
     }
-
     //좋아요 누른 자가 격리 후기 List 받기
-
-
+    @GetMapping("/{userId}/quarBoard/like")
+    public ResponseEntity<List<QuarBoardLikeMypageDto>> getQuarLikeMypage(@PathVariable Long userId){
+        return ResponseEntity.ok().body(quarBoardLikeService.getQuarLikeMypage(userId));
+    }
+    //좋아요 누른 의료진 분들께 후기 List 받기
+    @GetMapping("/{userId}/medical/like")
+    public ResponseEntity<List<MedicalLikeRequestDto>> getLike(@PathVariable Long userId) {
+        return ResponseEntity.ok().body(medicalLikeService.getLike(userId));
+    }
 
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
