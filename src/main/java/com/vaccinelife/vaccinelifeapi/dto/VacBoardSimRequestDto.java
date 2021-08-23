@@ -21,6 +21,7 @@ import java.util.List;
 public class VacBoardSimRequestDto {
     private Long id;
     private String title;
+    private String nickname;
     private int likeCount;
     private int totalVisitors;
     private int commentCount;
@@ -37,9 +38,10 @@ public class VacBoardSimRequestDto {
     @LastModifiedDate // 마지막 변경 시점
     private LocalDateTime modifiedAt;
     @Builder
-    public VacBoardSimRequestDto(Long id, String title, int likeCount, int totalVisitors, int commentCount, String type, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public VacBoardSimRequestDto(Long id, String title, String nickname,int likeCount, int totalVisitors, int commentCount, String type, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
+        this.nickname = nickname;
         this.likeCount = likeCount;
         this.totalVisitors = totalVisitors;
         this.commentCount = commentCount;
@@ -52,6 +54,7 @@ public class VacBoardSimRequestDto {
         return VacBoardSimRequestDto.builder()
                 .id(vacBoard.getId())
                 .title(vacBoard.getTitle())
+                .nickname(vacBoard.getUser().getNickname())
                 .likeCount(vacBoard.getLikeCount())
                 .totalVisitors(vacBoard.getTotalVisitors())
                 .commentCount(vacBoard.getCommentCount())
