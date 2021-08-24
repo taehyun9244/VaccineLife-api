@@ -130,7 +130,7 @@ public class QuarBoardService {
     }
 
 //    페이지 처리
-    public Page<QuarBoard> readQuarBoard(int page, int size, String sortBy, boolean isAsc) {
+    public Page<QuarBoardSimRequestDto> readQuarBoard(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);

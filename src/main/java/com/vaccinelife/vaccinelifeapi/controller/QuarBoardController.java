@@ -77,7 +77,7 @@ public class QuarBoardController {
 
 
     @GetMapping("/page")
-    public Page<QuarBoard> readQuarBoard(
+    public Page<QuarBoardSimRequestDto> readQuarBoard(
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sortBy") String sortBy,

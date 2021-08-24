@@ -1,5 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.repository;
 
+import com.vaccinelife.vaccinelifeapi.dto.QuarBoardSimRequestDto;
 import com.vaccinelife.vaccinelifeapi.model.QuarBoard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,7 @@ public interface QuarBoardRepository extends JpaRepository<QuarBoard, Long> {
    List<QuarBoard> findAllByUserIdOrderByCreatedAtDesc(Long userId);
    List<QuarBoard> findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(LocalDateTime created, LocalDateTime week);
 
-   Page<QuarBoard> findAllByOrderByCreatedAtDesc(Pageable pageable);
+   Page<QuarBoardSimRequestDto> findAllByOrderByCreatedAtDesc(Pageable pageable);
 
    QuarBoard findTopByIdLessThanOrderByCreatedAtDesc(Long querBoardId);
    QuarBoard findFirstByIdGreaterThan(Long querBoardId);
