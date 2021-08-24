@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -43,6 +44,7 @@ public class VacBoardService {
                 .nextId(nextId)
                 .build();
     }
+
 
 //    상세조회
     @Transactional
@@ -126,6 +128,14 @@ public class VacBoardService {
     public Page<VacBoardSimRequestDto> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
+    }
+
+    public Page<VacBoardSimRequestDto> readVacBoardType(int page, int size, String sortBy, boolean isAsc, String type) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        type = userRepository.findByType(type);
         Pageable pageable = PageRequest.of(page, size, sort);
         return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }

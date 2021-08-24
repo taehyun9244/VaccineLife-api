@@ -1,6 +1,5 @@
 package com.vaccinelife.vaccinelifeapi.service;
 
-import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeMypageDto;
 import com.vaccinelife.vaccinelifeapi.dto.VacBoardLikeRequestDto;
 import com.vaccinelife.vaccinelifeapi.dto.ResponseDto;
 import com.vaccinelife.vaccinelifeapi.model.User;
@@ -58,10 +57,5 @@ public class VacBoardLikeService {
         return VacBoardLikeRequestDto.list(vacBoardLike);
     }
 
-    //mypage 내가 좋아한 게시물 내려주기
-    public List<VacBoardLikeMypageDto> getVacLikeMypage(Long id) {
-        List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
 
-        return VacBoardLikeMypageDto.list(vacBoardLike);
-    }
 }

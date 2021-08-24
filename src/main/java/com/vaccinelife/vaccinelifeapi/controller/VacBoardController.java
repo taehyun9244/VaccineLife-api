@@ -3,6 +3,7 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
+import com.vaccinelife.vaccinelifeapi.model.VacBoard;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,19 +36,12 @@ public class VacBoardController {
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
 
-    //이전글 다음글
-    @GetMapping("/{vacBoardId}/id")
-    public ResponseEntity<VacPrevNextDto> getNPId(@PathVariable Long vacBoardId){
-        return ResponseEntity.ok().body(vacBoardService.getVacNextPrevId(vacBoardId));
-    }
-
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
     public ResponseEntity<VacBoardRequestDto> getDetailVacBoard(@PathVariable Long vacBoardId) {
         vacBoardService.IpChecker(vacBoardId); // 방문자 체크 로직
         return  ResponseEntity.ok().body(vacBoardService.getDetailVacBoard(vacBoardId));
     }
-    // 상세 게시판 댓글 조회
     @GetMapping("/{vacBoardId}/comments")
     public ResponseEntity<List<CommentRequestDto>> getComment(@PathVariable Long vacBoardId) {
         commentService.getComment(vacBoardId);

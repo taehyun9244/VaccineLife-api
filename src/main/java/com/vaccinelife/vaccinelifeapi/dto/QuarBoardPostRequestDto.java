@@ -1,9 +1,6 @@
 package com.vaccinelife.vaccinelifeapi.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class QuarBoardPostRequestDto {
     private Long userId;
     @NotBlank(message = "제목을 입력해주세요.")
