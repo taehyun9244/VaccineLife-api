@@ -132,5 +132,13 @@ public class VacBoardService {
         return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
+    public Page<VacBoardSimRequestDto> readVacBoardType(int page, int size, String sortBy, boolean isAsc, String type) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return vacBoardRepository.findAllByUserTypeOrderByCreatedAt(pageable,type);
+    }
+
 
 }

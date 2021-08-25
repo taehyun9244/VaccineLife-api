@@ -3,7 +3,8 @@ package com.vaccinelife.vaccinelifeapi.controller;
 
 import com.vaccinelife.vaccinelifeapi.dto.*;
 import com.vaccinelife.vaccinelifeapi.exception.ApiException;
-import com.vaccinelife.vaccinelifeapi.model.VacBoard;
+import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
+import com.vaccinelife.vaccinelifeapi.repository.VacBoardRepository;
 import com.vaccinelife.vaccinelifeapi.service.CommentService;
 import com.vaccinelife.vaccinelifeapi.service.VacBoardService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,6 +23,8 @@ import java.util.Map;
 public class VacBoardController {
     private final VacBoardService vacBoardService;
     private final CommentService commentService;
+    private final UserRepository userRepository;
+    private final VacBoardRepository vacBoardRepository;
 
     //    전체 게시판 조회
     @GetMapping("")
@@ -82,6 +84,20 @@ public class VacBoardController {
 
         page = page - 1;
         return vacBoardService.readVacBoard(page , size, sortBy, isAsc);
+    }
+
+    @GetMapping("type/page")
+    public Page<VacBoardSimRequestDto> readVacBoardType(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc,
+            @RequestParam("type") String type
+
+    ) {
+
+        page = page - 1;
+        return vacBoardService.readVacBoardType(page , size, sortBy, isAsc, type);
     }
 
     @ExceptionHandler({IllegalArgumentException.class})
