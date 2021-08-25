@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.*;
 
 
 @Service
@@ -62,5 +63,41 @@ public class UserService {
         UserRole role = UserRole.USER;
         User user = new User( id, username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
         userRepository.save(user);
+    }
+
+    @Transactional
+    public String findAfterEffect(){
+        List<User> none = userRepository.findAllByAfterEffectContaining("없음");
+        List<User> fever = userRepository.findAllByAfterEffectContaining("발열");
+        List<User> headache = userRepository.findAllByAfterEffectContaining("두통");
+        List<User> fatigue = userRepository.findAllByAfterEffectContaining("피로감");
+        List<User> pain = userRepository.findAllByAfterEffectContaining("통증");
+        List<User> swell = userRepository.findAllByAfterEffectContaining("부기");
+        List<User> sickness = userRepository.findAllByAfterEffectContaining("구토");
+        List<User> allergy = userRepository.findAllByAfterEffectContaining("알러지");
+        List<User> others = userRepository.findAllByAfterEffectContaining("기타");
+
+        int noneNum = none.size();
+        int feverNum = fever.size();
+        int headacheNum = headache.size();
+        int fatigueNum = fatigue.size();
+        int painNum = pain.size();
+        int swellNum = swell.size();
+        int sicknessNum = sickness.size();
+        int allergyNum = allergy.size();
+        int othersNum = others.size();
+
+
+        return "{"+"\n"+
+                "\""+"none"+"\""+":"+noneNum+","+"\n"+
+                "\""+"fever"+"\""+":"+feverNum+","+"\n"+
+                "\""+"headache"+"\""+":"+headacheNum+","+"\n"+
+                "\""+"fatigue"+"\""+":"+fatigueNum+","+"\n"+
+                "\""+"pain"+"\""+":"+painNum+","+"\n"+
+                "\""+"swell"+"\""+":"+swellNum+","+"\n"+
+                "\""+"sickness"+"\""+":"+sicknessNum+","+"\n"+
+                "\""+"allergy"+"\""+":"+allergyNum+","+"\n"+
+                "\""+"others"+"\""+":"+othersNum+"\n"+
+                "}";
     }
 }

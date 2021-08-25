@@ -72,6 +72,15 @@ public class UserController {
         return jwtTokenProvider.createToken(user.getUsername(), user.getId(), user.getRole(), user.getNickname(), user.getIsVaccine(), user.getType(),user.getDegree(),user.getGender(),user.getAge(),user.getDisease(),user.getAfterEffect());
     }
 
+//    @GetMapping("/test")
+//    public ResponseEntity<List<TestAfterEffect>> findAfterEffect(){
+//        return ResponseEntity.ok().body(userService.findAfterEffect());
+//    }
+
+    @GetMapping("/api/main/afterEffect")
+    public String findAfterEffect(){
+        return userService.findAfterEffect();
+    }
 
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {

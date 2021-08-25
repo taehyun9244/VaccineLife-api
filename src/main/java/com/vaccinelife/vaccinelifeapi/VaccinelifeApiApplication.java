@@ -23,14 +23,13 @@ public class VaccinelifeApiApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 //						.allowedOrigins("http://localhost:3000","http://kurlymarket.shop/")
-						.allowedOrigins("*")
-						.maxAge(3000)
-						.allowedMethods(
-								HttpMethod.GET.name(),
-								HttpMethod.HEAD.name(),
-								HttpMethod.POST.name(),
-								HttpMethod.PUT.name(),
-								HttpMethod.DELETE.name());
+                        .allowedOrigins("*")
+                        .maxAge(3000)
+                        .allowedHeaders("header1", "Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method"
+                                , "Access-Control-Request-Headers", "Authorization")
+                        .exposedHeaders("header1", "Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method"
+                                , "Access-Control-Request-Headers", "Authorization")
+                        .allowedMethods("PUT", "DELETE", "GET", "HEAD", "PATCH", "POST");
 			}
 		};
 	}
