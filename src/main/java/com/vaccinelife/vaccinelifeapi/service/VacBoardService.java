@@ -137,7 +137,7 @@ public class VacBoardService {
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return vacBoardRepository.findAllByUserTypeOrderByCreatedAt(pageable,type);
+        return vacBoardRepository.findAllByUserTypeOrderByCreatedAtDesc(pageable,type);
     }
 
 

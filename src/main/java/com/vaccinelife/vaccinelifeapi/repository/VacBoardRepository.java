@@ -17,7 +17,7 @@ public interface VacBoardRepository extends JpaRepository<VacBoard, Long> {
     List<VacBoard> findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(LocalDateTime created, LocalDateTime week);
 
     Page<VacBoardSimRequestDto> findAllByOrderByCreatedAtDesc(Pageable pageable);
-    Page<VacBoardSimRequestDto> findAllByUserTypeOrderByCreatedAt(Pageable pageable, String type);
+    Page<VacBoardSimRequestDto> findAllByUserTypeOrderByCreatedAtDesc(Pageable pageable, String type);
     VacBoard findTopByIdLessThanOrderByCreatedAtDesc(Long vacBoardId);
     VacBoard findFirstByIdGreaterThan(Long vacBoardId);
 }
