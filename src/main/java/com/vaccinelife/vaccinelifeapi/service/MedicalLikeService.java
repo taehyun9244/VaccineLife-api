@@ -47,6 +47,9 @@ public class MedicalLikeService {
 
     public List<MedicalLikeRequestDto> getLike(Long id) {
         List<MedicalLike> medicalLike = medicalLikeRepository.findAllByUserId(id);
+        if(id==null){
+            new NullPointerException("아이디가 존재하지 않습니다.");
+        }
         return MedicalLikeRequestDto.list(medicalLike);
     }
 
