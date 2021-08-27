@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MedicalRepository extends JpaRepository<Medical, Long> {
-    //    List<Medical>findAllByOrderByModifiedAtDesc();
+
     List<Medical> findAllByCreatedAtBetweenOrderByCreatedAtDesc(LocalDateTime created, LocalDateTime month);
     List<Medical> findAllByUserIdOrderByCreatedAtDesc(Long userId);
 

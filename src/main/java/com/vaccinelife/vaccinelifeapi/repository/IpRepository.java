@@ -13,5 +13,5 @@ public interface IpRepository extends JpaRepository<Ip, Long> {
     boolean existsByVacBoardAndIp(VacBoard vacBoard, String Ip);
     boolean existsByQuarBoardAndIp(QuarBoard quarBoard, String Ip);
 
-//    List<Ip> findAllByOrderByIdDesc();
+
 }

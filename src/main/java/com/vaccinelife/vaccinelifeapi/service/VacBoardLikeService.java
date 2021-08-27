@@ -53,6 +53,9 @@ public class VacBoardLikeService {
 
     public List<VacBoardLikeRequestDto> getLike(Long id) {
         List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
+            if(id==null){
+                new NullPointerException("아이디가 존재하지 않습니다.");
+        }
 
         return VacBoardLikeRequestDto.list(vacBoardLike);
     }

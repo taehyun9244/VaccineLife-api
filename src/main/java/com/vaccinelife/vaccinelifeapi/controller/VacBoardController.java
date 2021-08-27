@@ -23,8 +23,6 @@ import java.util.List;
 public class VacBoardController {
     private final VacBoardService vacBoardService;
     private final CommentService commentService;
-    private final UserRepository userRepository;
-    private final VacBoardRepository vacBoardRepository;
 
     //    전체 게시판 조회
     @GetMapping("")

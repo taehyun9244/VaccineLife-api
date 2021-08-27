@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface QuarCommentRepository extends JpaRepository<QuarComment, Long> {
-//    List<QuarComment> findAllById(Long id);
+
     List<QuarComment> findByQuarBoardId(Long id);
     List<QuarComment> findAllByQuarBoardIdOrderByCreatedAtDesc(Long id);
 }

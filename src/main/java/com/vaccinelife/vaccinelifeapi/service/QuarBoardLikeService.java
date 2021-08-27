@@ -46,7 +46,12 @@ public class QuarBoardLikeService {
 
     public List<QuarBoardLikeRequestDto> getLike(Long id) {
         List<QuarBoardLike> quarBoardLike = quarBoardLikeRepository.findAllByUserId(id);
+          if(id==null){
+            new NullPointerException("아이디가 존재하지 않습니다.");
+        }
+
         return QuarBoardLikeRequestDto.list(quarBoardLike);
+
     }
 
 }

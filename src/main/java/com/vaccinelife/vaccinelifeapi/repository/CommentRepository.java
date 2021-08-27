@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    List<Comment> findAllById(Long id);
+
 
     List<Comment> findByVacBoardId(Long id);
 
