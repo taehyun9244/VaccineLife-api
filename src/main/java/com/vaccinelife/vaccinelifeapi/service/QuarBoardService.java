@@ -124,7 +124,7 @@ public class QuarBoardService {
             ipRepository.save(ip);
             quarBoard.updateHits(+1);
         }else {
-            quarBoard.updateHits(+0);
+            quarBoard.updateHits(+1);
         }
         return ip;
     }
