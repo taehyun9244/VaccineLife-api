@@ -110,7 +110,7 @@ public class QuarBoardService {
     @Transactional
     public Ip QuarIpChecker(Long id) {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        String visitorIp = req.getHeader("X-FORWARDED-FOR");
+        String visitorIp = req.getHeader("X-Forwarded-Proto");
         if (visitorIp == null)
             visitorIp = req.getRemoteAddr();
         QuarBoard quarBoard = quarBoardRepository.findById(id).orElseThrow(
@@ -124,7 +124,7 @@ public class QuarBoardService {
             ipRepository.save(ip);
             quarBoard.updateHits(+1);
         }else {
-            quarBoard.updateHits(+1);
+            quarBoard.updateHits(+0);
         }
         return ip;
     }

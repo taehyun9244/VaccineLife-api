@@ -100,7 +100,7 @@ public class VacBoardService {
     @Transactional
     public Ip IpChecker(Long id) {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        String visitorIp = req.getHeader("X-FORWARDED-FOR");
+        String visitorIp = req.getHeader("X-Forwarded-Proto");
         if (visitorIp == null)
             visitorIp = req.getRemoteAddr();
         VacBoard vacBoard = vacBoardRepository.findById(id).orElseThrow(
@@ -114,7 +114,7 @@ public class VacBoardService {
             ipRepository.save(ip);
             vacBoard.updateHits(+1);
         }else {
-            vacBoard.updateHits(+1);
+            vacBoard.updateHits(+0);
         }
         return ip;
     }
