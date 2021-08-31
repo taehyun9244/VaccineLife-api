@@ -100,29 +100,26 @@ public class VacBoardService {
     @Transactional
     public Ip IpChecker(Long id) {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+
         String visitorIp = req.getHeader("X-Forwarded-For");
 
-
-        if (visitorIp == null) {
+        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
             visitorIp = req.getHeader("Proxy-Client-IP");
-
         }
-        if (visitorIp == null) {
+        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
             visitorIp = req.getHeader("WL-Proxy-Client-IP");
-
         }
-        if (visitorIp == null) {
+        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
             visitorIp = req.getHeader("HTTP_CLIENT_IP");
-
         }
-        if (visitorIp == null) {
+        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
             visitorIp = req.getHeader("HTTP_X_FORWARDED_FOR");
-
         }
-        if (visitorIp == null) {
+        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
             visitorIp = req.getRemoteAddr();
-
         }
+        if (visitorIp == null)
+            visitorIp = req.getRemoteAddr();
 
         VacBoard vacBoard = vacBoardRepository.findById(id).orElseThrow(
                 ()-> new IllegalArgumentException("게시물 오류")
