@@ -106,28 +106,50 @@ public class QuarBoardService {
         quarBoardRepository.deleteById(quarBoardId);
     }
 
-//    조회수 체크
+    //    ip로 조회수 체크
     @Transactional
     public Ip QuarIpChecker(Long id) {
-        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        String visitorIp = req.getHeader("X-Forwarded-For");
+        HttpServletRequest request =
+                ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+
+        String visitorIp = request.getHeader("X-Forwarded-For");
+
         if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
-            visitorIp = req.getHeader("Proxy-Client-IP");
+            visitorIp = request.getHeader("Proxy-Client-IP");
         }
-        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
-            visitorIp = req.getHeader("WL-Proxy-Client-IP");
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
-            visitorIp = req.getHeader("HTTP_CLIENT_IP");
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_CLIENT_IP");
         }
-        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
-            visitorIp = req.getHeader("HTTP_X_FORWARDED_FOR");
+        else if(visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
-        if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
-            visitorIp = req.getRemoteAddr();
+        else if(visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_X_FORWARDED");
         }
-        if (visitorIp == null)
-            visitorIp = req.getRemoteAddr();
+        else if(visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_FORWARDED_FOR");
+        }
+        else if(visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_FORWARDED");
+        }
+        else if(visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_VIA");
+        }
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("X-Real-IP");
+        }
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("REMOTE_ADDR");
+        }
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getHeader("HTTP_X_CLUSTER_CLIENT_IP");
+        }
+        else if (visitorIp == null || visitorIp.length() == 0 || "unknown".equalsIgnoreCase(visitorIp)) {
+            visitorIp = request.getRemoteAddr();
+        }
 
         QuarBoard quarBoard = quarBoardRepository.findById(id).orElseThrow(
                 ()-> new IllegalArgumentException("게시물 오류")
