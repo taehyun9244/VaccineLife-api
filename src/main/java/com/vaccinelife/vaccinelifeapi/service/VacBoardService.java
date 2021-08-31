@@ -108,13 +108,13 @@ public class VacBoardService {
         );
         Ip ip = new Ip(visitorIp, vacBoard);
 
-//        List<Ip> IpList = ipRepository.findAll();
+
         boolean isExist = ipRepository.existsByVacBoardAndIp(vacBoard, visitorIp);
         if (!isExist) {
             ipRepository.save(ip);
             vacBoard.updateHits(+1);
         }else {
-            vacBoard.updateHits(+0);
+            vacBoard.updateHits(+1);
         }
         return ip;
     }
