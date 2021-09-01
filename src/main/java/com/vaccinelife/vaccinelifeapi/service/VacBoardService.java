@@ -134,7 +134,7 @@ public class VacBoardService {
             ipRepository.save(ip);
             vacBoard.updateHits(+1);
         }else {
-            vacBoard.updateHits(+1);
+            vacBoard.updateHits(+1);  //현재 https 보안 상 이슈로 유저의 ip를 받을 수 없어 ip 존재여부 관계 없이 카운트 수 증가하게 처리
         }
         return ip;
     }
@@ -145,6 +145,8 @@ public class VacBoardService {
         return VacBoardSimRequestDto.list(vacBoards);
     }
 
+
+    //페이지네이션
     public Page<VacBoardSimRequestDto> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
@@ -152,6 +154,8 @@ public class VacBoardService {
         return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
+
+    //페이지네이션 + 백신 종류별 필터링 동시에 구현하는 메소드
     public Page<VacBoardSimRequestDto> readVacBoardType(int page, int size, String sortBy, boolean isAsc, String type) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
