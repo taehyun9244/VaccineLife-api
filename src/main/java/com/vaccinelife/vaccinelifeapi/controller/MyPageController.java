@@ -39,7 +39,7 @@ public class MyPageController {
     }
 
 
-
+    //예외처리 메세지 던질 핸들러
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
         ApiException apiException = new ApiException(

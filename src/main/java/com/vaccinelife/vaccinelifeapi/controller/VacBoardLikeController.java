@@ -23,11 +23,13 @@ public class VacBoardLikeController {
         return vacBoardLikeService.Like(vacBoardLikeRequestDto);
     }
 
-    //    좋아요 조회
+    //   유저 기본키로 유저별 좋아요 조회
     @GetMapping("/api/vacBoard/like/{userId}")
     public ResponseEntity<List<VacBoardLikeRequestDto>> Like(@PathVariable Long userId) {
         return ResponseEntity.ok().body(vacBoardLikeService.getLike(userId));
     }
+
+    //예외처리 메세지 던질 핸들러
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
         ApiException apiException = new ApiException(

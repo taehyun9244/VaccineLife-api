@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 
+//좋아요 동작/ 유저 아이디,닉네임 중복체크시 이용됨
 @Getter
 public class ResponseDto {
 

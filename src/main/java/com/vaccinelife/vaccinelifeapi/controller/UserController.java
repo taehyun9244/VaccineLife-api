@@ -24,11 +24,14 @@ public class UserController {
     private final UserRepository userRepository;
 
 
+    //회원가입 Post api
     @PostMapping("/api/signup")
     public void registerUser(@Valid @RequestBody SignupRequestDto signupRequestDto) {
         userService.registerUser(signupRequestDto);
     }
 
+
+    //로그인 Post api
     @PostMapping("/api/login")
     public String login(@RequestBody SignupRequestDto requestDto) {
         User user = userRepository.findByUsername(requestDto.getUsername())
@@ -40,6 +43,7 @@ public class UserController {
         return jwtTokenProvider.createToken(user.getUsername(), user.getId(), user.getRole(), user.getNickname(), user.getIsVaccine(), user.getType(),user.getDegree(),user.getGender(),user.getAge(),user.getDisease(),user.getAfterEffect());
     }
 
+    //user ID 조회로 중복체크 메소드
     @GetMapping("/api/signup/username")
     public ResponseDto UsernameCheck( @RequestParam("username") String username) {
 
@@ -52,6 +56,7 @@ public class UserController {
         }
     }
 
+    //user nickname 조회로 중복체크 메소드
     @GetMapping("/api/signup/nickname")
     public ResponseDto NicknameCheck( @RequestParam("nickname") String nickname) {
 
@@ -81,7 +86,7 @@ public class UserController {
     public String findAfterEffect(){
         return userService.findAfterEffect();
     }
-
+    //예외처리 메세지 던질 핸들러
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
         ApiException apiException = new ApiException(

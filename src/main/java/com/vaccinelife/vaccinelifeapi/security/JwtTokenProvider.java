@@ -22,7 +22,7 @@ public class JwtTokenProvider {
 
     private String secretKey = "cheerupkey";
 
-    // 토큰 유효시간 30분
+    // 토큰 유효시간 120분
     private long tokenValidTime = 120 * 60 * 1000L;
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -36,6 +36,7 @@ public class JwtTokenProvider {
     public String createToken(String userPk, Long id,UserRole roles, String nickname, Boolean isVaccine, String type,int degree, String gender, String age, String disease, String afterEffect) {
         Claims claims = Jwts.claims().setSubject(userPk);
         // claim : JWT payload 에 저장되는 정보단위
+        //토큰으로 넘겨줄 user data 저장 -> 프론트에서 token decode 해서 사용
         claims.put("id",id);
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장
         claims.put("nickname", nickname);

@@ -75,7 +75,7 @@ public class QuarBoardController {
         return  ResponseEntity.ok().body(quarCommentService.getQuarComment(quarBoardId));
     }
 
-
+    //페이지 구현
     @GetMapping("/page")
     public Page<QuarBoardSimRequestDto> readQuarBoard(
             @RequestParam("page") int page,
@@ -88,7 +88,7 @@ public class QuarBoardController {
         page = page - 1;
         return quarBoardService.readQuarBoard(page , size, sortBy, isAsc);
     }
-
+    //예외처리 메세지 던질 핸들러
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
         ApiException apiException = new ApiException(

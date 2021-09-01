@@ -70,7 +70,6 @@ public class VacBoardController {
     }
 
     //페이지 구현
-
     @GetMapping("/page")
     public Page<VacBoardSimRequestDto> readVacBoard(
             @RequestParam("page") int page,
@@ -84,6 +83,8 @@ public class VacBoardController {
         return vacBoardService.readVacBoard(page , size, sortBy, isAsc);
     }
 
+
+    //백신 종류별 필터링 + 페이지 구현
     @GetMapping("type/page")
     public Page<VacBoardSimRequestDto> readVacBoardType(
             @RequestParam("page") int page,
@@ -98,6 +99,7 @@ public class VacBoardController {
         return vacBoardService.readVacBoardType(page , size, sortBy, isAsc, type);
     }
 
+    //예외처리 메세지 던질 핸들러
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Object> handle(IllegalArgumentException ex) {
         ApiException apiException = new ApiException(

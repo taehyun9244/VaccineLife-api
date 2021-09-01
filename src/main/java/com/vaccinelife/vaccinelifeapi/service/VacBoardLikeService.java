@@ -39,6 +39,7 @@ public class VacBoardLikeService {
 
         boolean isExist = vacBoardLikeRepository.existsByVacBoardAndUser(vacBoard, user);
 
+        //좋아요 Post를 이미 한 적이 있으면 Post 시 좋아요 취소 카운트 -1,  없으면 좋아요 추가 카운트 +1
         if (isExist) {
             vacBoardLikeRepository.deleteByVacBoardAndUser(vacBoard, user);
             vacBoard.updateLikeNum(-1);
@@ -50,7 +51,7 @@ public class VacBoardLikeService {
             return new ResponseDto(true, "Basic 게시글 좋아요 추가", 200);
         }
     }
-
+    //userID로 유저별로 좋아요 한 게시글 조회
     public List<VacBoardLikeRequestDto> getLike(Long id) {
         List<VacBoardLike> vacBoardLike = vacBoardLikeRepository.findAllByUserId(id);
             if(id==null){

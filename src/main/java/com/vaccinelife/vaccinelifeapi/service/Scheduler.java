@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+
+//ip체크 매일 자정에 리프레쉬 되게
 @RequiredArgsConstructor
 @Component
 @Slf4j

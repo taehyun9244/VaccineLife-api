@@ -32,6 +32,7 @@ public class UserService {
         this.authenticationManager = authenticationManager;
     }
 
+    //유저 정보 업데이트
     @Transactional
     public Long update(Long id, SignupRequestDto requestDto) {
         User user = userRepository.findById(id).orElseThrow(

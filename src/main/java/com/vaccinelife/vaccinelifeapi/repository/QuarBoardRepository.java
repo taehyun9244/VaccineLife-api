@@ -16,7 +16,7 @@ public interface QuarBoardRepository extends JpaRepository<QuarBoard, Long> {
    List<QuarBoard> findAllByUserIdOrderByCreatedAtDesc(Long userId);
    List<QuarBoard> findTop3ByCreatedAtBetweenOrderByLikeCountDescCreatedAtDesc(LocalDateTime created, LocalDateTime week);
 
-   Page<QuarBoardSimRequestDto> findAllByOrderByCreatedAtDesc(Pageable pageable);
+   Page<QuarBoardSimRequestDto> findAllByOrderByCreatedAtDesc(Pageable pageable); //페이지네이션 + 최신순
 
    QuarBoard findTopByIdLessThanOrderByCreatedAtDesc(Long querBoardId);
    QuarBoard findFirstByIdGreaterThan(Long querBoardId);
