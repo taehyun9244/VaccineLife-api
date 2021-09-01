@@ -16,11 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -38,8 +36,6 @@ public class VacBoardService {
     private final VacBoardRepository vacBoardRepository;
     private final UserRepository userRepository;
     private final IpRepository ipRepository;
-    private final NativeWebRequest nativeWebRequest;
-
 
     //이전글 다음글
     @Transactional
@@ -110,7 +106,7 @@ public class VacBoardService {
     //    ip로 조회수 체크
     @Transactional
     public Object IpChecker(Long id) {
-        HttpServletRequest request = (HttpServletRequest) nativeWebRequest.getNativeRequest();
+        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 
         String clientIp = request.getHeader("X-Forwarded-For");
         if (StringUtils.isEmpty(clientIp) || "unknown".equalsIgnoreCase(clientIp)) {
