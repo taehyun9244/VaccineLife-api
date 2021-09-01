@@ -69,6 +69,7 @@ public class UserController {
         }
     }
 
+    //유저 정보 수정 후 새로 바뀐 정보로 토큰 재발급
     @PutMapping("api/signup/{id}")
     public String Userinfo( @PathVariable Long id, @RequestBody SignupRequestDto requestDto) {
         User user = userRepository.findByUsername(requestDto.getUsername())
