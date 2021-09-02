@@ -50,7 +50,7 @@ public class SignupRequestDto {
     }
 
     public SignupRequestDto(SignupRequestDto signupRequestDto) {
-        this.id=signupRequestDto.getId();
+       this.id=signupRequestDto.getId();
         this.username=signupRequestDto.getUsername();
         this.nickname=signupRequestDto.getNickname();
         this.isVaccine=signupRequestDto.getIsVaccine();

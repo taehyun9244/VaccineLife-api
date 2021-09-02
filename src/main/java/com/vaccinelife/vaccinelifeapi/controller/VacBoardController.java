@@ -36,6 +36,12 @@ public class VacBoardController {
         return ResponseEntity.ok().body(vacBoardService.getTopList());
     }
 
+    //이전글 다음글
+    @GetMapping("/{vacBoardId}/id")
+    public ResponseEntity<VacPrevNextDto> getNPId(@PathVariable Long vacBoardId){
+        return ResponseEntity.ok().body(vacBoardService.getVacNextPrevId(vacBoardId));
+    }
+
     //    상세 게시판 조회
     @GetMapping("/{vacBoardId}")
     public ResponseEntity<VacBoardRequestDto> getDetailVacBoard(@PathVariable Long vacBoardId) {

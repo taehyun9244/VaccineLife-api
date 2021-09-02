@@ -2,7 +2,6 @@ package com.vaccinelife.vaccinelifeapi.service;
 
 
 import com.vaccinelife.vaccinelifeapi.dto.SignupRequestDto;
-
 import com.vaccinelife.vaccinelifeapi.model.User;
 import com.vaccinelife.vaccinelifeapi.model.UserRole;
 import com.vaccinelife.vaccinelifeapi.repository.UserRepository;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
-
 
 @Service
 @Slf4j
@@ -62,7 +60,7 @@ public class UserService {
 
         password = passwordEncoder.encode(requestDto.getPassword());
         UserRole role = UserRole.USER;
-        User user = new User( id, username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
+        User user = new User(id, username, password, role, nickname, isVaccine, type, degree , gender, age, disease, afterEffect);
         userRepository.save(user);
     }
 

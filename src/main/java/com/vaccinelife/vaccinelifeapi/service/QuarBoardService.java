@@ -143,7 +143,7 @@ public class QuarBoardService {
             ipRepository.save(ip);
             quarBoard.updateHits(+1);
         }else {
-            quarBoard.updateHits(+1);  //현재 https 보안 상 이슈로 유저의 ip를 받을 수 없어 ip 존재여부 관계 없이 카운트 수 증가하게 처리
+            quarBoard.updateHits(+0);
         }
         return ip;
     }
