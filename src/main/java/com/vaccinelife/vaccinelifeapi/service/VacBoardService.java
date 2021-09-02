@@ -146,6 +146,9 @@ public class VacBoardService {
         return VacBoardSimRequestDto.list(vacBoards);
     }
 
+    
+    
+    //게시판 무한스크롤
     public Page<VacBoardSimRequestDto> readVacBoard(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
@@ -153,6 +156,7 @@ public class VacBoardService {
         return vacBoardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
+    // 백신 타입별 필터링 + 동시에 무한스크롤
     public Page<VacBoardSimRequestDto> readVacBoardType(int page, int size, String sortBy, boolean isAsc, String type) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
