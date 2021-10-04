@@ -34,7 +34,7 @@ public class VacBoardLikeService {
 
 
         User user = userRepository.findById(vacBoardLikeRequestDto.getUserId()).orElseThrow(
-                () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
+                () -> new NullPointerException("해당 유저가 존재하지 않습니다.")
         );
 
         boolean isExist = vacBoardLikeRepository.existsByVacBoardAndUser(vacBoard, user);
