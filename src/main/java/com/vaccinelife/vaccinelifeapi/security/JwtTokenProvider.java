@@ -20,7 +20,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private String secretKey = "cheerupkey";
+    private String secretKey = "";
 
     // 토큰 유효시간 120분
     private long tokenValidTime = 120 * 60 * 1000L;
