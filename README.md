@@ -52,3 +52,10 @@ Notion, Slack, Gather
 ### Version Management
 
 git, GitHub
+
+<img width="1042" alt="스크린샷 2022-12-30 오전 4 36 06" src="https://user-images.githubusercontent.com/85472257/210003905-aab712a7-ceea-493d-a04c-cf6ee98af6c1.png">
+
+<img width="1096" alt="스크린샷 2022-12-30 오전 4 36 28" src="https://user-images.githubusercontent.com/85472257/210003931-8479929a-cc64-49a0-8168-fe87e2a0bfda.png">
+
+
+
